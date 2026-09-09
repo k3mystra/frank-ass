@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dbcm2yfxc8hec"]
+
+[ext_resource type="Script" uid="uid://dn12ia26s86s2" path="res://freakystein/frankestein.gd" id="1_4iptu"]
+
+[node name="Frankestein" type="Node3D" unique_id=751629555]
+script = ExtResource("1_4iptu")
