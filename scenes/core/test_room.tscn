@@ -1,6 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://t3stroom001"]
+[gd_scene format=3 uid="uid://t3stroom001"]
 
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://b8pickup001" path="res://scenes/props/battery_pickup.tscn" id="2_battery"]
+[ext_resource type="Script" uid="uid://b3if5e0sxkcjr" path="res://resources/data/battery_data.gd" id="3_battery_data"]
+
+[sub_resource type="Environment" id="Environment_test"]
+background_mode = 1
+background_color = Color(0.05, 0.06, 0.08, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.3, 0.35, 0.45, 1)
+ambient_light_energy = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
 albedo_color = Color(0.2, 0.22, 0.25, 1)
@@ -13,66 +22,98 @@ roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pillar"]
 albedo_color = Color(0.4, 0.5, 0.6, 1)
 
-[sub_resource type="Environment" id="Environment_test"]
-background_mode = 1
-background_color = Color(0.05, 0.06, 0.08, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0.3, 0.35, 0.45, 1)
-ambient_light_energy = 0.6
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_table"]
+albedo_color = Color(0.25, 0.22, 0.18, 1)
+roughness = 0.7
 
-[node name="TestRoom" type="Node3D"]
+[sub_resource type="Resource" id="Resource_battery_100"]
+script = ExtResource("3_battery_data")
+id = "battery_test_100"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[sub_resource type="Resource" id="Resource_battery_50"]
+script = ExtResource("3_battery_data")
+id = "battery_test_50"
+charge = 50.0
+
+[sub_resource type="Resource" id="Resource_battery_0"]
+script = ExtResource("3_battery_data")
+id = "battery_test_0"
+charge = 0.0
+
+[node name="TestRoom" type="Node3D" unique_id=2048359229]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=980852253]
 environment = SubResource("Environment_test")
 
-[node name="CeilingLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0, 0)
+[node name="CeilingLight" type="OmniLight3D" parent="." unique_id=555236333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 light_color = Color(0.95, 0.95, 1, 1)
 light_energy = 1.8
 omni_range = 16.0
 
-[node name="Floor" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1097411775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 use_collision = true
 size = Vector3(16, 0.2, 16)
 material = SubResource("StandardMaterial3D_floor")
 
-[node name="WallNorth" type="CSGBox3D" parent="."]
+[node name="WallNorth" type="CSGBox3D" parent="." unique_id=1214818363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8)
 use_collision = true
 size = Vector3(16, 4, 0.4)
 material = SubResource("StandardMaterial3D_wall")
 
-[node name="WallSouth" type="CSGBox3D" parent="."]
+[node name="WallSouth" type="CSGBox3D" parent="." unique_id=2038431411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
 use_collision = true
 size = Vector3(16, 4, 0.4)
 material = SubResource("StandardMaterial3D_wall")
 
-[node name="WallWest" type="CSGBox3D" parent="."]
+[node name="WallWest" type="CSGBox3D" parent="." unique_id=2110824853]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, 0)
 use_collision = true
 size = Vector3(0.4, 4, 16)
 material = SubResource("StandardMaterial3D_wall")
 
-[node name="WallEast" type="CSGBox3D" parent="."]
+[node name="WallEast" type="CSGBox3D" parent="." unique_id=1917381243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
 use_collision = true
 size = Vector3(0.4, 4, 16)
 material = SubResource("StandardMaterial3D_wall")
 
-[node name="PillarA" type="CSGBox3D" parent="."]
+[node name="PillarA" type="CSGBox3D" parent="." unique_id=1052604619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -3)
 use_collision = true
 size = Vector3(1.2, 2, 1.2)
 material = SubResource("StandardMaterial3D_pillar")
 
-[node name="PillarB" type="CSGBox3D" parent="."]
+[node name="PillarB" type="CSGBox3D" parent="." unique_id=2016313379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 3)
 use_collision = true
 size = Vector3(1.4, 3, 1.4)
 material = SubResource("StandardMaterial3D_pillar")
 
-[node name="Player" parent="." instance=ExtResource("1_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 3)
+[node name="Workbench" type="CSGBox3D" parent="." unique_id=225122246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 1.2)
+use_collision = true
+size = Vector3(1.6, 0.9, 0.8)
+material = SubResource("StandardMaterial3D_table")
 
+[node name="Battery100" parent="." unique_id=1919278821 instance=ExtResource("2_battery")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 1.2)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery50" parent="." unique_id=42665590 instance=ExtResource("2_battery")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 1.2)
+battery_data = SubResource("Resource_battery_50")
+
+[node name="Battery0" parent="." unique_id=528697346 instance=ExtResource("2_battery")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.9, 1.2)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery1" parent="." unique_id=1344626681 instance=ExtResource("2_battery")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68577594, 0.9, 1.0387285)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Player" parent="." unique_id=1273875163 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 3)
