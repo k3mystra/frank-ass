@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dbcm2yfxc8hec"]
+
+[ext_resource type="Script" uid="uid://dn12ia26s86s2" path="res://freakystein/frankestein.gd" id="1_4iptu"]
+[ext_resource type="Script" uid="uid://8eliffya187b" path="res://freakystein/metrics.gd" id="2_hqqss"]
+[ext_resource type="Resource" uid="uid://crhqekfkdpeiy" path="res://freakystein/heart_function.tres" id="3_mtu8s"]
+[ext_resource type="Resource" uid="uid://qbddkptq5vbs" path="res://freakystein/neural_activity.tres" id="4_t2uua"]
+[ext_resource type="Resource" uid="uid://can4it0jl1d3t" path="res://freakystein/oxygen_saturation.tres" id="5_eiism"]
+
+[node name="Frankestein" type="Node3D" unique_id=751629555]
+script = ExtResource("1_4iptu")
+metrics = Array[ExtResource("2_hqqss")]([ExtResource("3_mtu8s"), ExtResource("4_t2uua"), ExtResource("5_eiism")])
+
+[node name="CriticalTimer" type="Timer" parent="." unique_id=4130712]
+wait_time = 30.0
+one_shot = true
+
+[node name="Tick" type="Timer" parent="." unique_id=891278132]
+autostart = true

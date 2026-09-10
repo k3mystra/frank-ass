@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://nv4hw6k35ktt"]
+
+[ext_resource type="Script" uid="uid://h50la1tegasr" path="res://devices/MonitorInteract.gd" id="1_xq62q"]
+
+[node name="Monitor" type="Node3D" unique_id=709485960]
+
+[node name="Interact" type="Node3D" parent="." unique_id=594739928]
+script = ExtResource("1_xq62q")

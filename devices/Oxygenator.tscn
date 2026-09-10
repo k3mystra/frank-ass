@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://m72d7tf65rli"]
+
+[ext_resource type="Script" uid="uid://jgy6if5qxjqj" path="res://devices/OxygenatorInteract.gd" id="1_yihq5"]
+
+[node name="Oxygenator" type="Node3D" unique_id=327908620]
+
+[node name="Interact" type="Node3D" parent="." unique_id=1246778519]
+script = ExtResource("1_yihq5")
