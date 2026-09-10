@@ -2,7 +2,14 @@
 
 [ext_resource type="Script" uid="uid://jgy6if5qxjqj" path="res://devices/OxygenatorInteract.gd" id="1_yihq5"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxy"]
+size = Vector3(1, 1, 1)
+
 [node name="Oxygenator" type="Node3D" unique_id=327908620]
 
-[node name="Interact" type="Node3D" parent="." unique_id=1246778519]
+[node name="Interact" type="Area3D" parent="." unique_id=1246778519]
 script = ExtResource("1_yihq5")
+prompt_text = "Use Oxygenator"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=1246778520]
+shape = SubResource("BoxShape3D_oxy")

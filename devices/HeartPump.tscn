@@ -2,7 +2,14 @@
 
 [ext_resource type="Script" uid="uid://ce5dmdhw7su3r" path="res://devices/HeartPumpInteract.gd" id="1_bc6mg"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pump"]
+size = Vector3(1, 1, 1)
+
 [node name="HeartPump" type="Node3D" unique_id=607287846]
 
-[node name="Interact" type="Node3D" parent="." unique_id=2080061450]
+[node name="Interact" type="Area3D" parent="." unique_id=2080061450]
 script = ExtResource("1_bc6mg")
+prompt_text = "Use Heart Pump"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=2080061451]
+shape = SubResource("BoxShape3D_pump")
