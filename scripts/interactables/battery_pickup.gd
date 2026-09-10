@@ -8,6 +8,8 @@ const BatteryDataClass = preload("res://resources/data/battery_data.gd")
 @onready var anim_player: AnimationPlayer = find_child("AnimationPlayer", true, false) as AnimationPlayer
 @onready var core_mesh: MeshInstance3D = find_child("Battery_001", true, false) as MeshInstance3D
 
+var _thrower_node: Node = null
+
 func _ready() -> void:
 	if battery_data == null:
 		battery_data = BatteryDataClass.new(100.0)
@@ -35,6 +37,24 @@ func interact(player: Node) -> void:
 	if inv != null and inv.has_method("add_item"):
 		if inv.add_item(battery_data):
 			queue_free()
+
+func throw(impulse: Vector3, torque: Vector3, thrower: Node = null) -> void:
+	if thrower is CollisionObject3D:
+		_thrower_node = thrower
+		call("add_collision_exception_with", thrower)
+		if not is_connected("body_entered", _on_body_entered_after_throw):
+			connect("body_entered", _on_body_entered_after_throw)
+
+	call("apply_central_impulse", impulse)
+	call("apply_torque_impulse", torque)
+
+func _on_body_entered_after_throw(body: Node) -> void:
+	if body != _thrower_node:
+		if _thrower_node is CollisionObject3D and is_instance_valid(_thrower_node):
+			call("remove_collision_exception_with", _thrower_node)
+		_thrower_node = null
+		if is_connected("body_entered", _on_body_entered_after_throw):
+			disconnect("body_entered", _on_body_entered_after_throw)
 
 func update_visual_indicator() -> void:
 	if battery_data == null:

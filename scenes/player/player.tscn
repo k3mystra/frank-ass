@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://b613oq6doxgsa" path="res://scripts/player/interaction_raycast.gd" id="2_raycast"]
 [ext_resource type="Script" uid="uid://df2l5cgw3neqg" path="res://scripts/player/inventory.gd" id="3_inventory"]
 [ext_resource type="PackedScene" uid="uid://hudview001" path="res://scenes/ui/hud.tscn" id="4_hud"]
+[ext_resource type="Script" path="res://scripts/player/view_model.gd" id="5_viewmodel"]
+[ext_resource type="PackedScene" uid="uid://d26gh8yj8tj72" path="res://assets/models/NewBattery.glb" id="6_battery_model"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.4
@@ -24,6 +26,13 @@ current = true
 
 [node name="InteractionRayCast" type="RayCast3D" parent="Head/Camera3D" unique_id=1537521634]
 script = ExtResource("2_raycast")
+
+[node name="ViewModel" type="Node3D" parent="Head/Camera3D" unique_id=1498321045]
+transform = Transform3D(0.957662, 0.04981, 0.28352, -0.07661, 0.98972, 0.12067, -0.27481, -0.13727, 0.95166, 0.24, -0.2, -0.38)
+script = ExtResource("5_viewmodel")
+
+[node name="BatteryModel" parent="Head/Camera3D/ViewModel" unique_id=1849204912 instance=ExtResource("6_battery_model")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0, 0)
 
 [node name="Inventory" type="Node" parent="." unique_id=1272061554]
 script = ExtResource("3_inventory")

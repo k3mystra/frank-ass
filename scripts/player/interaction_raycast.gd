@@ -6,7 +6,7 @@ const GameConfigClass = preload("res://resources/config/game_config.gd")
 
 signal prompt_updated(prompt: String)
 
-var current_interactable: CollisionObject3D = null
+var current_interactable: InteractableClass = null
 @onready var player: PlayerController = owner as PlayerController
 
 func _ready() -> void:
@@ -20,10 +20,10 @@ func _physics_process(_delta: float) -> void:
 		prompt_updated.emit("")
 
 	var collider: Object = get_collider()
-	var new_interactable: CollisionObject3D = null
+	var new_interactable: InteractableClass = null
 
-	if is_colliding() and collider is InteractableClass and is_instance_valid(collider):
-		new_interactable = collider as CollisionObject3D
+	if is_colliding() and is_instance_valid(collider) and collider is InteractableClass:
+		new_interactable = collider as InteractableClass
 
 	if new_interactable != current_interactable:
 		if current_interactable != null and is_instance_valid(current_interactable):
@@ -43,3 +43,4 @@ func _physics_process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and current_interactable != null and is_instance_valid(current_interactable):
 		current_interactable.interact(player)
+

@@ -87,48 +87,37 @@ func drop_active_item() -> void:
 	var pickup = BatteryPickupScene.instantiate()
 	pickup.battery_data = removed_item
 
-	player.get_parent().add_child(pickup)
-
-	# Raycast from camera to place cleanly on the aimed surface (table top, floor)
 	var head = player.get_node_or_null("Head")
 	var cam: Camera3D = head.get_node_or_null("Camera3D") as Camera3D if head != null else null
 	var space_state = player.get_world_3d().direct_space_state
-	var drop_pos: Vector3
 
-	if cam != null and space_state != null:
-		var cam_pos = cam.global_position
-		var cam_forward = -cam.global_transform.basis.z
+	var cam_pos: Vector3 = cam.global_position if cam != null else (player.global_position + Vector3.UP * 1.5)
+	var cam_forward: Vector3 = -cam.global_transform.basis.z if cam != null else -player.global_transform.basis.z
 
-		# Check if looking at a surface within 2.5m (table, pedestal, floor)
-		var query = PhysicsRayQueryParameters3D.create(cam_pos, cam_pos + cam_forward * 2.5)
-		query.exclude = [player.get_rid()]
-		var hit = space_state.intersect_ray(query)
+	# Safe spawn distance check (ensure we don't spawn inside a wall at point-blank range)
+	var spawn_dist: float = 0.45
+	if space_state != null:
+		var wall_query = PhysicsRayQueryParameters3D.create(cam_pos, cam_pos + cam_forward * 0.5)
+		wall_query.exclude = [player.get_rid()]
+		var wall_hit = space_state.intersect_ray(wall_query)
+		if wall_hit:
+			spawn_dist = maxf(0.1, cam_pos.distance_to(wall_hit.position) - 0.1)
 
-		if hit:
-			if hit.normal.y >= 0.7:
-				# Upward-facing horizontal surface (table top, floor, shelf)
-				drop_pos = hit.position
-			else:
-				# Vertical wall or table side: drop down to floor at the base of the wall
-				var wall_offset = hit.position + hit.normal * 0.25
-				var down_query = PhysicsRayQueryParameters3D.create(wall_offset, wall_offset + Vector3.DOWN * 5.0)
-				down_query.exclude = [player.get_rid()]
-				var floor_hit = space_state.intersect_ray(down_query)
-				if floor_hit:
-					drop_pos = floor_hit.position
-				else:
-					drop_pos = player.global_position + (-player.global_transform.basis.z * 0.8)
-		else:
-			# If looking forward into open air, drop 1.2m ahead and find floor beneath
-			var air_point = cam_pos + cam_forward * 1.2
-			var down_query = PhysicsRayQueryParameters3D.create(air_point, air_point + Vector3.DOWN * 4.0)
-			down_query.exclude = [player.get_rid()]
-			var floor_hit = space_state.intersect_ray(down_query)
-			if floor_hit:
-				drop_pos = floor_hit.position
-			else:
-				drop_pos = player.global_position + (-player.global_transform.basis.z * 1.0)
-	else:
-		drop_pos = player.global_position + (-player.global_transform.basis.z * 1.0)
+	var spawn_pos: Vector3 = cam_pos + cam_forward * spawn_dist
 
-	pickup.global_position = drop_pos
+	player.get_parent().add_child(pickup)
+	pickup.global_position = spawn_pos
+
+	# Calculate throw impulse and slight random tumble torque
+	var throw_impulse: Vector3 = cam_forward * 5.2 + Vector3.UP * 1.6
+	var tumble_torque: Vector3 = Vector3(
+		randf_range(-1.2, 1.2),
+		randf_range(-1.2, 1.2),
+		randf_range(-1.2, 1.2)
+	)
+
+	if pickup.has_method("throw"):
+		pickup.throw(throw_impulse, tumble_torque, player)
+	elif pickup is RigidBody3D:
+		pickup.apply_central_impulse(throw_impulse)
+		pickup.apply_torque_impulse(tumble_torque)
