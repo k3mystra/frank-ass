@@ -23,6 +23,17 @@ func get_blocks_lit() -> int:
 	else:
 		return 0
 
+func get_remaining_seconds() -> float:
+	return (charge / 100.0) * GameConfig.BATTERY_LIFESPAN_SECONDS
+
+func get_display_percent() -> int:
+	match get_blocks_lit():
+		4: return 100
+		3: return 75
+		2: return 50
+		1: return 25
+		_: return 0
+
 
 func is_depleted() -> bool:
 	return charge <= 0.0

@@ -11,18 +11,22 @@ const ALL_MACHINES: Array[StringName] = [
 	MACHINE_NEURAL
 ]
 
-const BATTERY_LIFESPAN_SECONDS: float = 120.0
+## Seconds a 100% battery lasts in an active machine
+const BATTERY_LIFESPAN_SECONDS: float = 60.0
 static func get_battery_drain_rate() -> float:
 	return 100.0 / BATTERY_LIFESPAN_SECONDS
 
-#for the devices
+## Maximum capacity of each machine meter in seconds
+const METER_MAX_CAPACITY: float = 180.0
+
+## Life meter drain rate per second when unpowered
 const METER_UNPOWERED_DRAIN_RATE: float = 1.0
 
-const METER_POWERED_RECOVERY_RATE: float = 2.5
+## Life meter recovery rate per second when powered
+const METER_POWERED_RECOVERY_RATE: float = 1.0
 
+## Grace duration before failure when a meter reaches 0s 
 const CRITICAL_FAILURE_DURATION: float = 30.0
-
-const SURVIVAL_TIMER_DURATION: float = 1200.0
 
 const INTERACTION_DISTANCE: float = 2.5
 
