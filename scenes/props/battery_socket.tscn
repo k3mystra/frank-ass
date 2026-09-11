@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d26gh8yj8tj72" path="res://assets/models/NewBattery.glb" id="2_model"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_socket"]
-height = 0.03956909
+height = 0.03970459
 radius = 0.1796875
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qbr6i"]
@@ -23,14 +23,22 @@ bottom_radius = 0.18
 height = 0.04
 
 [node name="BatterySocket" type="Area3D" unique_id=1839201948]
+collision_layer = 2
 script = ExtResource("1_socket")
 prompt_text = "Insert Battery"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1839201949]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019939566, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019852294, 0)
 shape = SubResource("CylinderShape3D_socket")
 
 [node name="BatteryCollision" type="CollisionShape3D" parent="." unique_id=399441801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19156265, 0)
+shape = SubResource("CylinderShape3D_qbr6i")
+disabled = true
+
+[node name="SolidObstacle" type="StaticBody3D" parent="." unique_id=399441800]
+
+[node name="ThrowHitBox" type="CollisionShape3D" parent="SolidObstacle" unique_id=318607514]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19156265, 0)
 shape = SubResource("CylinderShape3D_qbr6i")
 disabled = true

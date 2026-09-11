@@ -4,6 +4,9 @@ extends CollisionObject3D
 @export var prompt_text: String = "Interact"
 @export var highlight_mesh: MeshInstance3D
 
+func _enter_tree() -> void:
+	set_collision_layer_value(2, true)
+
 func get_interaction_prompt(_player: Node = null) -> String:
 	return prompt_text
 
