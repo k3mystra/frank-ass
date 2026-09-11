@@ -17,6 +17,11 @@ func _init(p_name = "", p_value = 0, p_alarm_treshold = 0, p_regress_rate = 0) -
 
 
 # Return true if need to turn on alarm
-func tick_value() -> bool:
+func dec_value() -> bool:
 	value -= regress_rate
+	return value <= alarm_treshold
+
+
+func inc_value() -> bool:
+	value += regress_rate
 	return value <= alarm_treshold
