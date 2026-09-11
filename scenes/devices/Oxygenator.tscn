@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://m72d7tf65rli"]
 
-[ext_resource type="Script" uid="uid://jgy6if5qxjqj" path="res://devices/OxygenatorInteract.gd" id="1_yihq5"]
+[ext_resource type="Script" uid="uid://jgy6if5qxjqj" path="res://scripts/devices/OxygenatorInteract.gd" id="1_yihq5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxy"]
 size = Vector3(1, 1, 1)

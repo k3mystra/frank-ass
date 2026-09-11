@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4u07nmg3nkck"]
 
-[ext_resource type="Script" uid="uid://ce5dmdhw7su3r" path="res://devices/HeartPumpInteract.gd" id="1_bc6mg"]
+[ext_resource type="Script" uid="uid://ce5dmdhw7su3r" path="res://scripts/devices/HeartPumpInteract.gd" id="1_bc6mg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pump"]
 size = Vector3(1, 1, 1)

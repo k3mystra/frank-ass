@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://nv4hw6k35ktt"]
 
-[ext_resource type="Script" uid="uid://h50la1tegasr" path="res://devices/MonitorInteract.gd" id="1_xq62q"]
+[ext_resource type="Script" uid="uid://h50la1tegasr" path="res://scripts/devices/MonitorInteract.gd" id="1_xq62q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mon"]
 size = Vector3(1, 1, 1)

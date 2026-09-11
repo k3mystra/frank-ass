@@ -21,6 +21,10 @@ signal battery_installed(socket_id: StringName, battery: Resource)
 ## Emitted when a battery is removed from any socket
 signal battery_removed(socket_id: StringName)
 
+# Emit on machine getting power/no power, passing the associated metrics
+signal power_up(metric_name: String)
+signal power_down(metric_name: String)
+
 ## Emitted when game concludes
 ## success: true if power switch activated; false if critical failure expired
 signal game_ended(success: bool, reason: String)

@@ -1,7 +1,6 @@
 class_name HUD
 extends Control
 
-const GameConfigClass = preload("res://resources/config/game_config.gd")
 const BatteryDataClass = preload("res://resources/data/battery_data.gd")
 const BATTERY_ICON: Texture2D = preload("res://assets/images/Battery.png")
 
@@ -51,7 +50,7 @@ func update_prompt(text: String) -> void:
 		reticle_dot.custom_minimum_size = Vector2(4, 4)
 		reticle_dot.color = Color(1.0, 1.0, 1.0, 0.7)
 	else:
-		prompt_label.text = text if GameConfigClass.SHOW_INTERACTION_TEXT else ""
+		prompt_label.text = text if GameConfig.SHOW_INTERACTION_TEXT else ""
 		reticle_dot.custom_minimum_size = Vector2(8, 8)
 		reticle_dot.color = Color(0.2, 0.9, 1.0, 1.0)
 

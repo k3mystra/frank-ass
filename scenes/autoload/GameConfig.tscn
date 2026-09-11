@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://i1k134j80vqx"]
+
+[ext_resource type="Script" uid="uid://b8pn482wdfcd5" path="res://scripts/autoload/game_config.gd" id="1_p2wwy"]
+
+[node name="GameConfig" type="Node" unique_id=1788479156]
+script = ExtResource("1_p2wwy")

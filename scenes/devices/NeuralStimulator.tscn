@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0wnyqk6iugau"]
 
-[ext_resource type="Script" uid="uid://c06heepvntdrx" path="res://devices/NeuralStimulatorInteract.gd" id="1_87r5f"]
+[ext_resource type="Script" uid="uid://c06heepvntdrx" path="res://scripts/devices/NeuralStimulatorInteract.gd" id="1_87r5f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stim"]
 size = Vector3(1, 1, 1)

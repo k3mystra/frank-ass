@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Metric" format=3 uid="uid://qbddkptq5vbs"]
 
-[ext_resource type="Script" uid="uid://8eliffya187b" path="res://freakystein/metrics.gd" id="1_cd1vi"]
+[ext_resource type="Script" uid="uid://8eliffya187b" path="res://resources/frank/metrics.gd" id="1_bwun3"]
 
 [resource]
-script = ExtResource("1_cd1vi")
+script = ExtResource("1_bwun3")
 name = "Neural Activity"
 value = 100.0
 alarm_treshold = 10.0

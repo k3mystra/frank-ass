@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="Metric" format=3 uid="uid://dbvtjf0leqmbv"]
-
-[ext_resource type="Script" uid="uid://8eliffya187b" path="res://freakystein/metrics.gd" id="1_7vqos"]
-
-[resource]
-script = ExtResource("1_7vqos")
