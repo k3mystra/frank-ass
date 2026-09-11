@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://b8pickup001" path="res://scenes/props/battery_pickup.tscn" id="2_battery"]
 [ext_resource type="Script" uid="uid://b3if5e0sxkcjr" path="res://resources/data/battery_data.gd" id="3_battery_data"]
+[ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="4_ui1jt"]
+[ext_resource type="Script" uid="uid://clfxhrri5d1a8" path="res://scripts/core/socket_debug_label.gd" id="5_debug_label"]
+
+
 
 [sub_resource type="Environment" id="Environment_test"]
 background_mode = 1
@@ -106,11 +110,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 1.2)
 battery_data = SubResource("Resource_battery_100")
 
 [node name="Battery50" parent="." unique_id=42665590 instance=ExtResource("2_battery")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27810058, 0.9, 1.0021428)
 battery_data = SubResource("Resource_battery_50")
 
 [node name="Battery0" parent="." unique_id=528697346 instance=ExtResource("2_battery")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.9, 1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 1.0145161)
 battery_data = SubResource("Resource_battery_0")
 
 [node name="Battery1" parent="." unique_id=1344626681 instance=ExtResource("2_battery")]
@@ -119,3 +123,19 @@ battery_data = SubResource("Resource_battery_0")
 
 [node name="Player" parent="." unique_id=1273875163 instance=ExtResource("1_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 3)
+
+[node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("4_ui1jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20912373, 0.9000001, 1.3947358)
+
+[node name="SocketDebugLabel" type="Label3D" parent="." unique_id=1839201953 node_paths=PackedStringArray("target_socket")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20912373, 1.45, 1.3947358)
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "Detached"
+font_size = 28
+outline_size = 6
+script = ExtResource("5_debug_label")
+target_socket = NodePath("../BatterySocket")
+
+
