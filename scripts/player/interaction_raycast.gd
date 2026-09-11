@@ -12,6 +12,7 @@ func _ready() -> void:
 	target_position = Vector3(0, 0, -GameConfig.INTERACTION_DISTANCE)
 	collide_with_areas = true
 	collide_with_bodies = true
+	collision_mask = 2
 
 func _physics_process(_delta: float) -> void:
 	if current_interactable != null and not is_instance_valid(current_interactable):

@@ -41,4 +41,3 @@ func is_depleted() -> bool:
 func duplicate_data() -> Resource:
 	var copy = duplicate()
 	return copy
-

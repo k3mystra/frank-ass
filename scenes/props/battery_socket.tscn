@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b8socket001"]
+
+[ext_resource type="Script" uid="uid://dxx0j3758i335" path="res://scripts/interactables/battery_socket.gd" id="1_socket"]
+[ext_resource type="PackedScene" uid="uid://d26gh8yj8tj72" path="res://assets/models/NewBattery.glb" id="2_model"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_socket"]
+height = 0.03970459
+radius = 0.1796875
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qbr6i"]
+height = 0.30213165
+radius = 0.08886719
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_base"]
+albedo_color = Color(0.12, 0.13, 0.15, 1)
+metallic = 0.8
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_base"]
+material = SubResource("StandardMaterial3D_base")
+top_radius = 0.16
+bottom_radius = 0.18
+height = 0.04
+
+[node name="BatterySocket" type="Area3D" unique_id=1839201948]
+collision_layer = 2
+script = ExtResource("1_socket")
+prompt_text = "Insert Battery"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1839201949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019852294, 0)
+shape = SubResource("CylinderShape3D_socket")
+
+[node name="BatteryCollision" type="CollisionShape3D" parent="." unique_id=399441801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19156265, 0)
+shape = SubResource("CylinderShape3D_qbr6i")
+disabled = true
+
+[node name="SolidObstacle" type="StaticBody3D" parent="." unique_id=399441800]
+
+[node name="ThrowHitBox" type="CollisionShape3D" parent="SolidObstacle" unique_id=318607514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19156265, 0)
+shape = SubResource("CylinderShape3D_qbr6i")
+disabled = true
+
+[node name="SocketBase" type="MeshInstance3D" parent="." unique_id=1839201950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("CylinderMesh_base")
+
+[node name="BatteryModel" parent="." unique_id=1839201951 instance=ExtResource("2_model")]
+transform = Transform3D(2.385, 0, 0, 0, 2.385, 0, 0, 0, 2.385, 0, 0.02, 0)

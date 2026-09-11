@@ -12,6 +12,7 @@ height = 0.3223633
 radius = 0.088378906
 
 [node name="BatteryPickup" type="RigidBody3D" unique_id=1344626681]
+collision_layer = 3
 mass = 1.0
 physics_material_override = SubResource("PhysicsMaterial_battery")
 continuous_cd = true
