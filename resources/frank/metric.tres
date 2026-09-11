@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Metric" format=3 uid="uid://dbvtjf0leqmbv"]
 
-[ext_resource type="Script" uid="uid://8eliffya187b" path="res://resources/frank/metrics.gd" id="1_7vqos"]
+[ext_resource type="Script" uid="uid://8eliffya187b" path="res://resources/frank/metrics.gd" id="1_2broc"]
 
 [resource]
-script = ExtResource("1_7vqos")
+script = ExtResource("1_2broc")

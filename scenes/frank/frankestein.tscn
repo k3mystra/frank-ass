@@ -5,14 +5,12 @@
 [ext_resource type="Resource" uid="uid://crhqekfkdpeiy" path="res://resources/frank/heart_function.tres" id="3_mtu8s"]
 [ext_resource type="Resource" uid="uid://qbddkptq5vbs" path="res://resources/frank/neural_activity.tres" id="4_t2uua"]
 [ext_resource type="Resource" uid="uid://can4it0jl1d3t" path="res://resources/frank/oxygen_saturation.tres" id="5_eiism"]
+[ext_resource type="PackedScene" uid="uid://dpmpkslxvfapn" path="res://scenes/frank/CriticalTimer.tscn" id="6_oa846"]
 
 [node name="Frankestein" type="Node3D" unique_id=751629555]
 script = ExtResource("1_4iptu")
 metrics = Array[ExtResource("2_hqqss")]([ExtResource("3_mtu8s"), ExtResource("4_t2uua"), ExtResource("5_eiism")])
-
-[node name="CriticalTimer" type="Timer" parent="." unique_id=4130712]
-wait_time = 30.0
-one_shot = true
+critical_timer_scene = ExtResource("6_oa846")
 
 [node name="Tick" type="Timer" parent="." unique_id=891278132]
 autostart = true
