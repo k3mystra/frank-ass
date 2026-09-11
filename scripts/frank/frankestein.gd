@@ -6,9 +6,22 @@ extends Node3D
 @export var critical_state: Array[bool]
 @export var is_alarm_active: bool = false
 
+@export var critical_timer_scene: PackedScene
+var critical_timers: Array[Timer] = []
+
+
 func _ready() -> void:
     critical_state.resize(metrics.size())
     critical_state.fill(false)
+
+    const CRIT_TIMER_NAME = "CritTimer"
+    for i in range(metrics.size()):
+        var timer = critical_timer_scene.instantiate()
+        var timer_name = CRIT_TIMER_NAME + str(i)
+        timer.set_name(timer_name)
+        add_child(timer)
+
+        critical_timers.push_back(get_node(timer_name))
 
 
 func toggle_alarm() -> void:
@@ -22,7 +35,11 @@ func toggle_alarm() -> void:
 func toggle_critical(i: int) -> void:
     critical_state[i] = not critical_state[i]
     if critical_state[i]:
-        print()
+        print("%s is critical!" % metrics[i].name)
+        critical_timers[i].start()
+    else:
+        print("%s is normal" % metrics[i].name)
+        critical_timers[i].stop()
 
 
 func _on_tick_timeout() -> void:
