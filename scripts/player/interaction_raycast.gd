@@ -2,7 +2,6 @@ class_name InteractionRayCast
 extends RayCast3D
 
 const InteractableClass = preload("res://scripts/interactables/interactable.gd")
-const GameConfigClass = preload("res://resources/config/game_config.gd")
 
 signal prompt_updated(prompt: String)
 
@@ -10,7 +9,7 @@ var current_interactable: InteractableClass = null
 @onready var player: PlayerController = owner as PlayerController
 
 func _ready() -> void:
-	target_position = Vector3(0, 0, -GameConfigClass.INTERACTION_DISTANCE)
+	target_position = Vector3(0, 0, -GameConfig.INTERACTION_DISTANCE)
 	collide_with_areas = true
 	collide_with_bodies = true
 

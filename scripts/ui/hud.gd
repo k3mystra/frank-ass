@@ -1,7 +1,6 @@
 class_name HUD
 extends Control
 
-const GameConfigClass = preload("res://resources/config/game_config.gd")
 const BatteryDataClass = preload("res://resources/data/battery_data.gd")
 const BATTERY_ICON: Texture2D = preload("res://assets/images/Battery.png")
 

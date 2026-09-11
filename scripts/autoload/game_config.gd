@@ -1,5 +1,4 @@
-class_name GameConfig
-extends Resource
+extends Node
 
 const MACHINE_HEART: StringName = &"heart_pump"
 const MACHINE_OXYGEN: StringName = &"oxygen_system"
