@@ -12,3 +12,5 @@ metrics = Array[ExtResource("2_hqqss")]([ExtResource("3_mtu8s"), ExtResource("4_
 
 [node name="Tick" type="Timer" parent="." unique_id=891278132]
 autostart = true
+
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

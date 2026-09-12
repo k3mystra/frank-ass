@@ -17,7 +17,7 @@ func _ready() -> void:
 	critical_state.fill(false)
 
 	is_maintained.resize(metrics.size())
-	is_maintained.fill(true)
+	is_maintained.fill(false)
 
 	EventBus.power_up.connect(_on_machine_power_up)
 	EventBus.power_down.connect(_on_machine_power_down)
@@ -59,9 +59,9 @@ func _on_tick_timeout() -> void:
 	var new_alarm_state = false
 	for i in range(metrics.size()):
 		if is_maintained[i]:
-			new_alarm_state |= metrics[i].inc_value()
+			new_alarm_state = metrics[i].inc_value() or new_alarm_state
 		else:
-			new_alarm_state |= metrics[i].dec_value()
+			new_alarm_state = metrics[i].dec_value() or new_alarm_state
 
 		var is_critical = metrics[i].value <= 0.0
 		if critical_state[i] != is_critical:
