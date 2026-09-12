@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bck077ron2pbx"]
+
+[ext_resource type="Script" uid="uid://cwb7n1q4rqg8p" path="res://scripts/interactables/battery_rack.gd" id="1_rack"]
+[ext_resource type="PackedScene" uid="uid://d26gh8yj8tj72" path="res://assets/models/NewBattery.glb" id="2_model"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_snap"]
+height = 0.12
+radius = 0.115722656
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_battery_solid"]
+height = 0.30213165
+radius = 0.08886719
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plate"]
+albedo_color = Color(0.13, 0.14, 0.16, 1)
+metallic = 0.85
+roughness = 0.35
+
+[sub_resource type="BoxMesh" id="BoxMesh_plate"]
+material = SubResource("StandardMaterial3D_plate")
+size = Vector3(0.32, 0.02, 0.32)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bracket"]
+albedo_color = Color(0.22, 0.24, 0.28, 1)
+metallic = 0.9
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_bracket"]
+material = SubResource("StandardMaterial3D_bracket")
+size = Vector3(0.02, 0.08, 0.14)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ring"]
+albedo_color = Color(0.75, 0.5, 0.1, 1)
+metallic = 0.6
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ring"]
+material = SubResource("StandardMaterial3D_ring")
+top_radius = 0.1
+bottom_radius = 0.12
+height = 0.03
+
+[node name="BatteryRack" type="Area3D" unique_id=1345184488]
+collision_layer = 2
+script = ExtResource("1_rack")
+is_draining = false
+prompt_text = "Store Battery"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=250610686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+shape = SubResource("CylinderShape3D_snap")
+
+[node name="BatteryCollision" type="CollisionShape3D" parent="." unique_id=1411051875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191563, 0)
+shape = SubResource("CylinderShape3D_battery_solid")
+disabled = true
+
+[node name="SolidObstacle" type="StaticBody3D" parent="." unique_id=1304348401]
+
+[node name="ThrowHitBox" type="CollisionShape3D" parent="SolidObstacle" unique_id=508159428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191563, 0)
+shape = SubResource("CylinderShape3D_battery_solid")
+disabled = true
+
+[node name="MountPlate" type="MeshInstance3D" parent="." unique_id=486413504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("BoxMesh_plate")
+
+[node name="BracketLeft" type="MeshInstance3D" parent="." unique_id=1239081878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0.05, 0)
+mesh = SubResource("BoxMesh_bracket")
+
+[node name="BracketRight" type="MeshInstance3D" parent="." unique_id=144263993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0.05, 0)
+mesh = SubResource("BoxMesh_bracket")
+
+[node name="SocketRing" type="MeshInstance3D" parent="." unique_id=456147349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+mesh = SubResource("CylinderMesh_ring")
+
+[node name="BatteryModel" parent="." unique_id=2092715115 instance=ExtResource("2_model")]
+transform = Transform3D(2.385, 0, 0, 0, 2.385, 0, 0, 0, 2.385, 0, 0.02, 0)

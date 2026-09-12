@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://b3if5e0sxkcjr" path="res://resources/data/battery_data.gd" id="3_battery_data"]
 [ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="4_ui1jt"]
 [ext_resource type="Script" uid="uid://clfxhrri5d1a8" path="res://scripts/core/socket_debug_label.gd" id="5_debug_label"]
-
-
+[ext_resource type="PackedScene" uid="uid://bck077ron2pbx" path="res://scenes/props/battery_rack.tscn" id="6_rack"]
+[ext_resource type="PackedScene" uid="uid://bn301ipq48hmt" path="res://scenes/props/battery_rack_3slot.tscn" id="7_twqg7"]
 
 [sub_resource type="Environment" id="Environment_test"]
 background_mode = 1
@@ -138,4 +138,20 @@ outline_size = 6
 script = ExtResource("5_debug_label")
 target_socket = NodePath("../BatterySocket")
 
+[node name="BatteryRack" parent="." unique_id=1321826367 instance=ExtResource("6_rack")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4018253, 0, 1.35)
+socket_id = &"test_rack_1"
 
+[node name="RackDebugLabel" type="Label3D" parent="." unique_id=899849935 node_paths=PackedStringArray("target_socket")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 1.45, 1.35)
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "Detached"
+font_size = 28
+outline_size = 6
+script = ExtResource("5_debug_label")
+target_socket = NodePath("../BatteryRack")
+
+[node name="BatteryRack3Slot" parent="." unique_id=1014713735 instance=ExtResource("7_twqg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8032665, -0.014999986, 1.3403897)
