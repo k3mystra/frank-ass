@@ -43,4 +43,3 @@ func _physics_process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and current_interactable != null and is_instance_valid(current_interactable):
 		current_interactable.interact(player)
-

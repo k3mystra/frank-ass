@@ -12,13 +12,13 @@ config_version=5
 
 config/name="frank-ass"
 run/main_scene="res://scenes/core/test_room.tscn"
-config/features=PackedStringArray("4.7", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 EventBus="*res://scripts/autoload/event_bus.gd"
-GameConfig="*uid://b8pn482wdfcd5"
+GameConfig="*res://scripts/autoload/game_config.gd"
 
 [display]
 
