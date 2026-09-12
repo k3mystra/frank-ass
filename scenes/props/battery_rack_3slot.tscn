@@ -1,30 +1,27 @@
 [gd_scene format=3 uid="uid://bn301ipq48hmt"]
 
 [ext_resource type="PackedScene" uid="uid://bck077ron2pbx" path="res://scenes/props/battery_rack.tscn" id="1_rack_slot"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall_plate"]
-albedo_color = Color(0.1, 0.11, 0.13, 1)
-metallic = 0.9
-roughness = 0.3
-
-[sub_resource type="BoxMesh" id="BoxMesh_wall_plate"]
-material = SubResource("StandardMaterial3D_wall_plate")
-size = Vector3(1, 0.015, 0.36)
+[ext_resource type="PackedScene" uid="uid://bsbvcbqs5hhje" path="res://assets/models/BatteryRack.glb" id="2_amg30"]
 
 [node name="BatteryRack3Slot" type="Node3D" unique_id=112881734]
 
-[node name="WallMountPlate" type="MeshInstance3D" parent="." unique_id=1748112763]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0075, 0)
-mesh = SubResource("BoxMesh_wall_plate")
+[node name="BatteryRack2" parent="." unique_id=819053432 instance=ExtResource("2_amg30")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 
 [node name="Slot1" parent="." unique_id=444663667 instance=ExtResource("1_rack_slot")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32, 0.015, 0)
+transform = Transform3D(0.7957061, 0, -0.6056829, 0, 1, 0, 0.6056829, 0, 0.7957061, 0.16367245, 0.015, -0.22931544)
 socket_id = &"rack_slot_1"
 
 [node name="Slot2" parent="." unique_id=721257922 instance=ExtResource("1_rack_slot")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 0)
+transform = Transform3D(0.99321336, 0, -0.116306715, 0, 1, 0, 0.116306715, 0, 0.99321336, -0.1698479, 0.015, -0.22931544)
 socket_id = &"rack_slot_2"
 
 [node name="Slot3" parent="." unique_id=407047976 instance=ExtResource("1_rack_slot")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.015, 0)
+transform = Transform3D(0.9593978, 0, 0.28205678, 0, 1, 0, -0.28205678, 0, 0.9593978, -0.27319747, 0.022242889, 0.08792336)
 socket_id = &"rack_slot_3"
+
+[node name="Slot4" parent="." unique_id=1345184488 instance=ExtResource("1_rack_slot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0021440387, 0.009713903, 0.28685474)
+
+[node name="Slot5" parent="." unique_id=282464388 instance=ExtResource("1_rack_slot")]
+transform = Transform3D(0.948683, 0, -0.3162286, 0, 1, 0, 0.3162286, 0, 0.948683, 0.2699778, 0.009713903, 0.08972724)

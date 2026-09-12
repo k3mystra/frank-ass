@@ -5,8 +5,16 @@
 [ext_resource type="Script" uid="uid://b3if5e0sxkcjr" path="res://resources/data/battery_data.gd" id="3_battery_data"]
 [ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="4_ui1jt"]
 [ext_resource type="Script" uid="uid://clfxhrri5d1a8" path="res://scripts/core/socket_debug_label.gd" id="5_debug_label"]
-[ext_resource type="PackedScene" uid="uid://bck077ron2pbx" path="res://scenes/props/battery_rack.tscn" id="6_rack"]
 [ext_resource type="PackedScene" uid="uid://bn301ipq48hmt" path="res://scenes/props/battery_rack_3slot.tscn" id="7_twqg7"]
+[ext_resource type="PackedScene" uid="uid://dn2q88ccg77dw" path="res://scenes/props/eye_door.tscn" id="8_eye_door"]
+[ext_resource type="PackedScene" uid="uid://b8keypickup01" path="res://scenes/props/key_pickup.tscn" id="9_key_pickup"]
+[ext_resource type="Resource" path="res://resources/keys/key_eye.tres" id="10_key_eye"]
+[ext_resource type="PackedScene" path="res://scenes/props/star_door.tscn" id="11_star_door"]
+[ext_resource type="PackedScene" path="res://scenes/props/triangle_door.tscn" id="12_triangle_door"]
+[ext_resource type="PackedScene" path="res://scenes/props/circle_door.tscn" id="13_circle_door"]
+[ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="14_key_star"]
+[ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="15_key_triangle"]
+[ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="16_key_circle"]
 
 [sub_resource type="Environment" id="Environment_test"]
 background_mode = 1
@@ -106,26 +114,26 @@ size = Vector3(1.6, 0.9, 0.8)
 material = SubResource("StandardMaterial3D_table")
 
 [node name="Battery100" parent="." unique_id=1919278821 instance=ExtResource("2_battery")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
 battery_data = SubResource("Resource_battery_100")
 
 [node name="Battery50" parent="." unique_id=42665590 instance=ExtResource("2_battery")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27810058, 0.9, 1.0021428)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27810058, 0.9, 2.0971234)
 battery_data = SubResource("Resource_battery_50")
 
 [node name="Battery0" parent="." unique_id=528697346 instance=ExtResource("2_battery")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 1.0145161)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
 battery_data = SubResource("Resource_battery_0")
 
 [node name="Battery1" parent="." unique_id=1344626681 instance=ExtResource("2_battery")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68577594, 0.9, 1.0387285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68577594, 0.9, 2.133709)
 battery_data = SubResource("Resource_battery_0")
 
 [node name="Player" parent="." unique_id=1273875163 instance=ExtResource("1_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 3)
 
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("4_ui1jt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20912373, 0.9000001, 1.3947358)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4136294, 0.9000001, 1.277951)
 
 [node name="SocketDebugLabel" type="Label3D" parent="." unique_id=1839201953 node_paths=PackedStringArray("target_socket")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20912373, 1.45, 1.3947358)
@@ -138,20 +146,33 @@ outline_size = 6
 script = ExtResource("5_debug_label")
 target_socket = NodePath("../BatterySocket")
 
-[node name="BatteryRack" parent="." unique_id=1321826367 instance=ExtResource("6_rack")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4018253, 0, 1.35)
-socket_id = &"test_rack_1"
-
-[node name="RackDebugLabel" type="Label3D" parent="." unique_id=899849935 node_paths=PackedStringArray("target_socket")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 1.45, 1.35)
-billboard = 1
-double_sided = false
-no_depth_test = true
-text = "Detached"
-font_size = 28
-outline_size = 6
-script = ExtResource("5_debug_label")
-target_socket = NodePath("../BatteryRack")
-
 [node name="BatteryRack3Slot" parent="." unique_id=1014713735 instance=ExtResource("7_twqg7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8032665, -0.014999986, 1.3403897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3018241, 0.8902862, 1.1986297)
+
+[node name="EyeDoor" parent="." unique_id=647893250 instance=ExtResource("8_eye_door")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -3.3, 0, -1)
+
+[node name="StarDoor" parent="." unique_id=2046720560 instance=ExtResource("11_star_door")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -1.1, 0, -1)
+
+[node name="TriangleDoor" parent="." unique_id=2048654399 instance=ExtResource("12_triangle_door")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 1.1, 0, -1)
+
+[node name="CircleDoor" parent="." unique_id=1598993337 instance=ExtResource("13_circle_door")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 3.3, 0, -1)
+
+[node name="KeyEyePickup" parent="." unique_id=1737319622 instance=ExtResource("9_key_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.95, 1.2)
+key_data = ExtResource("10_key_eye")
+
+[node name="KeyStarPickup" parent="." unique_id=980058555 instance=ExtResource("9_key_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.95, 1.2)
+key_data = ExtResource("14_key_star")
+
+[node name="KeyTrianglePickup" parent="." unique_id=1107301280 instance=ExtResource("9_key_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.95, 1.2)
+key_data = ExtResource("15_key_triangle")
+
+[node name="KeyCirclePickup" parent="." unique_id=646601367 instance=ExtResource("9_key_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.95, 1.2)
+key_data = ExtResource("16_key_circle")

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b8keypickup01"]
+
+[ext_resource type="Script" uid="uid://cnm0hlnf6nrf6" path="res://scripts/interactables/key_pickup.gd" id="1_pickup"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_key"]
+friction = 0.8
+bounce = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_key"]
+size = Vector3(0.24, 0.12, 0.4)
+
+[node name="KeyPickup" type="RigidBody3D" unique_id=1096488501]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_key")
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 4
+linear_damp = 0.5
+angular_damp = 4.5
+script = ExtResource("1_pickup")
+prompt_text = "Pick up Key"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1536451418]
+shape = SubResource("BoxShape3D_key")
