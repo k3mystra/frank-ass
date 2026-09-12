@@ -10,6 +10,10 @@ const ALL_MACHINES: Array[StringName] = [
 	MACHINE_NEURAL
 ]
 
+# Path to scenes
+const MAIN_SCENE_PATH: StringName = "res://scenes/core/main_scene.tscn"
+const GAME_SCENE_PATH: StringName = "res://scenes/core/test_room.tscn"
+
 ## Seconds a 100% battery lasts in an active machine
 const BATTERY_LIFESPAN_SECONDS: float = 60.0
 static func get_battery_drain_rate() -> float:
