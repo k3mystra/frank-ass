@@ -5,11 +5,10 @@ extends Node3D
 var metric_name_to_idx: Dictionary[String, int]
 var is_maintained: Array[bool]
 
-@export var is_alarm_active: bool = false
+var is_alarm_active: bool = false
 
-@export var critical_timer_scene: PackedScene
 var critical_timers: Array[Timer] = []
-@export var critical_state: Array[bool]
+var critical_state: Array[bool]
 
 
 func _ready() -> void:
@@ -24,11 +23,14 @@ func _ready() -> void:
 
     const CRIT_TIMER_NAME = "CritTimer"
     for i in range(metrics.size()):
-        var timer = critical_timer_scene.instantiate()
         var timer_name = CRIT_TIMER_NAME + str(i)
-        timer.set_name(timer_name)
-        add_child(timer)
 
+        var timer = Timer.new()
+        timer.set_name(timer_name)
+        timer.wait_time = GameConfig.CRITICAL_FAILURE_DURATION
+        timer.one_shot = true
+
+        add_child(timer)
         critical_timers.push_back(get_node(timer_name))
 
         metric_name_to_idx.set(metrics[i].name, i)

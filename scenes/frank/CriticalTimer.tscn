@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://dpmpkslxvfapn"]
-
-[node name="CriticalTimer" type="Timer" unique_id=1445425680]
-wait_time = 30.0
-one_shot = true

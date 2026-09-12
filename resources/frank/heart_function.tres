@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_dgrg2")
-name = "Heart"
+name = "Circulation"
+value = 180.0
 alarm_treshold = 10.0
-regress_rate = 1.0
 metadata/_custom_type_script = "uid://8eliffya187b"

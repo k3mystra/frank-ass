@@ -16,13 +16,13 @@ static func get_battery_drain_rate() -> float:
 	return 100.0 / BATTERY_LIFESPAN_SECONDS
 
 ## Maximum capacity of each machine meter in seconds
-const METER_MAX_CAPACITY: float = 180.0
+const METRIC_MAX_CAPACITY: float = 180.0
 
 ## Life meter drain rate per second when unpowered
-const METER_UNPOWERED_DRAIN_RATE: float = 1.0
+const METRIC_UNPOWERED_DRAIN_RATE: float = 1.0
 
 ## Life meter recovery rate per second when powered
-const METER_POWERED_RECOVERY_RATE: float = 1.0
+const METRIC_POWERED_RECOVERY_RATE: float = 1.0
 
 ## Grace duration before failure when a meter reaches 0s 
 const CRITICAL_FAILURE_DURATION: float = 30.0
@@ -30,4 +30,3 @@ const CRITICAL_FAILURE_DURATION: float = 30.0
 const INTERACTION_DISTANCE: float = 2.5
 
 const SHOW_INTERACTION_TEXT: bool = true
-
