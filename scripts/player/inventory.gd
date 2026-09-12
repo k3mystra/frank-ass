@@ -4,6 +4,7 @@ extends Node
 
 const MAX_SLOTS: int = 3
 const BatteryPickupScene = preload("res://scenes/props/battery_pickup.tscn")
+const KeyPickupScene = preload("res://scenes/props/key_pickup.tscn")
 
 var slots: Array = [null, null, null]
 var active_slot_index: int = 0
@@ -84,8 +85,13 @@ func drop_active_item() -> void:
 		return
 
 	var removed_item = remove_active_item()
-	var pickup = BatteryPickupScene.instantiate()
-	pickup.battery_data = removed_item
+	var pickup = null
+	if removed_item is KeyData:
+		pickup = KeyPickupScene.instantiate()
+		pickup.set_key_data(removed_item)
+	else:
+		pickup = BatteryPickupScene.instantiate()
+		pickup.battery_data = removed_item
 
 	var head = player.get_node_or_null("Head")
 	var cam: Camera3D = head.get_node_or_null("Camera3D") as Camera3D if head != null else null

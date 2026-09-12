@@ -49,3 +49,4 @@ mesh = SubResource("CylinderMesh_base")
 
 [node name="BatteryModel" parent="." unique_id=1839201951 instance=ExtResource("2_model")]
 transform = Transform3D(2.385, 0, 0, 0, 2.385, 0, 0, 0, 2.385, 0, 0.02, 0)
+visible = false

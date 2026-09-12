@@ -66,6 +66,10 @@ func _on_inventory_updated(slots: Array) -> void:
 				slot_icons[i].texture = BATTERY_ICON
 				slot_icons[i].visible = true
 				slot_labels[i].text = ""
+			elif item is KeyData:
+				slot_icons[i].texture = item.icon
+				slot_icons[i].visible = item.icon != null
+				slot_labels[i].text = ""
 			else:
 				slot_icons[i].texture = null
 				slot_icons[i].visible = false

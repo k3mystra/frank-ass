@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://6662qx33rjfk"]
+
+[ext_resource type="Script" uid="uid://dtm10beabtxdq" path="res://scripts/interactables/door.gd" id="1_door"]
+[ext_resource type="Script" uid="uid://skas023wr4pw" path="res://resources/data/key_data.gd" id="2_key_data"]
+[ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="3_key_triangle"]
+[ext_resource type="PackedScene" path="res://assets/models/Door_Triangle.glb" id="4_mesh"]
+[ext_resource type="Script" path="res://scripts/interactables/door_area.gd" id="5_door_area"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_leaf"]
+size = Vector3(0.196, 0.33, 0.016)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_interact"]
+size = Vector3(0.196, 0.33, 0.04)
+
+[node name="TriangleDoor" type="Node3D"]
+script = ExtResource("1_door")
+required_keys = Array[ExtResource("2_key_data")]([ExtResource("3_key_triangle")])
+
+[node name="HingePivot" type="Node3D" parent="."]
+
+[node name="Door_Triangle" parent="HingePivot" instance=ExtResource("4_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0254602, 0)
+
+[node name="SolidBlocker" type="StaticBody3D" parent="HingePivot"]
+collision_layer = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HingePivot/SolidBlocker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.098, 0.165, 0.008)
+shape = SubResource("BoxShape3D_leaf")
+
+[node name="DoorArea" type="Area3D" parent="HingePivot" node_paths=PackedStringArray("door")]
+collision_layer = 2
+script = ExtResource("5_door_area")
+door = NodePath("../..")
+prompt_text = "Door"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HingePivot/DoorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.098, 0.165, 0.008)
+shape = SubResource("BoxShape3D_interact")
+
+[node name="KeyMountFront" type="Node3D" parent="HingePivot"]
+transform = Transform3D(-0.25, 0, -2.1855694e-08, 0, 0.25, 0, 2.1855694e-08, 0, -0.25, 0.183827, 0.16459, 0.0279095)
+
+[node name="KeyMountBack" type="Node3D" parent="HingePivot"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.183827, 0.16459, -0.013)
+
