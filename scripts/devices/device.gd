@@ -10,13 +10,13 @@ func _ready() -> void:
     associated_socket.battery_depleted.connect(_on_battery_depleted)
 
 
-func _on_battery_attached():
-    GameConfig.power_up.emit(associated_metric.name)
+func _on_battery_attached(_battery_data: BatteryData):
+    EventBus.power_up.emit(associated_metric.name)
 
 
-func _on_battery_detached():
-    GameConfig.power_down.emit(associated_metric.name)
+func _on_battery_detached(_battery_data: BatteryData):
+    EventBus.power_down.emit(associated_metric.name)
 
 
-func _on_battery_depleted():
-    GameConfig.power_down.emit(associated_metric.name)
+func _on_battery_depleted(_battery_data: BatteryData):
+    EventBus.power_down.emit(associated_metric.name)
