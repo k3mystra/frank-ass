@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dtm10beabtxdq" path="res://scripts/interactables/door.gd" id="1_door"]
 [ext_resource type="Script" uid="uid://skas023wr4pw" path="res://resources/data/key_data.gd" id="2_jyhgy"]
-[ext_resource type="Resource" path="res://resources/keys/key_eye.tres" id="2_key_eye"]
-[ext_resource type="PackedScene" uid="uid://b2poffaphhf1t" path="res://assets/models/Door_Eye.glb" id="3_mesh"]
-[ext_resource type="Script" uid="uid://b1b5jsm7iusor" path="res://scripts/interactables/door_area.gd" id="4_door_area"]
+[ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="2_key_circle"]
+[ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="3_key_triangle"]
+[ext_resource type="PackedScene" uid="uid://b2poffaphhf1t" path="res://assets/models/Door_Eye.glb" id="4_mesh"]
+[ext_resource type="Script" uid="uid://b1b5jsm7iusor" path="res://scripts/interactables/door_area.gd" id="5_door_area"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_leaf"]
 size = Vector3(0.196, 0.33, 0.016)
@@ -14,11 +15,11 @@ size = Vector3(0.196, 0.33, 0.04)
 
 [node name="EyeDoor" type="Node3D" unique_id=256378877]
 script = ExtResource("1_door")
-required_keys = Array[ExtResource("2_jyhgy")]([ExtResource("2_key_eye")])
+required_keys = Array[ExtResource("2_jyhgy")]([ExtResource("2_key_circle"), ExtResource("3_key_triangle")])
 
 [node name="HingePivot" type="Node3D" parent="." unique_id=1289364910]
 
-[node name="Door_Eye" parent="HingePivot" unique_id=294893299 instance=ExtResource("3_mesh")]
+[node name="Door_Eye" parent="HingePivot" unique_id=294893299 instance=ExtResource("4_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0254602, 0)
 
 [node name="SolidBlocker" type="StaticBody3D" parent="HingePivot" unique_id=2075460407]
@@ -29,7 +30,7 @@ shape = SubResource("BoxShape3D_leaf")
 
 [node name="DoorArea" type="Area3D" parent="HingePivot" unique_id=1520644738 node_paths=PackedStringArray("door")]
 collision_layer = 2
-script = ExtResource("4_door_area")
+script = ExtResource("5_door_area")
 door = NodePath("../..")
 prompt_text = "Door"
 
@@ -40,5 +41,11 @@ shape = SubResource("BoxShape3D_interact")
 [node name="KeyMountFront" type="Node3D" parent="HingePivot" unique_id=1456686671]
 transform = Transform3D(-0.25, 0, -2.1855694e-08, 0, 0.25, 0, 2.1855694e-08, 0, -0.25, 0.183827, 0.16459, 0.0279095)
 
+[node name="KeyMountFront2" type="Node3D" parent="HingePivot" unique_id=854498148]
+transform = Transform3D(-0.25, 0, -2.1855694e-08, 0, 0.25, 0, 2.1855694e-08, 0, -0.25, 0.16876152, 0.16459, 0.0279095)
+
 [node name="KeyMountBack" type="Node3D" parent="HingePivot" unique_id=69898356]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.183827, 0.16459, -0.013)
+
+[node name="KeyMountBack2" type="Node3D" parent="HingePivot" unique_id=514032456]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.16734844, 0.16459, -0.013)

@@ -47,24 +47,40 @@ func _are_all_required_keys_slotted() -> bool:
 	return true
 
 func get_interaction_prompt(player: Node = null) -> String:
-	if not slotted_keys.is_empty():
-		if player != null and player.has_node("Inventory"):
-			var inv = player.get_node("Inventory")
-			if inv != null and inv.has_method("is_full") and inv.is_full():
-				return "" 
-		var first_key: KeyData = slotted_keys.values()[0]
-		return "E - Take " + first_key.display_name
+	var active_key: KeyData = null
+	var is_inv_full: bool = false
 
-	if not is_open:
-		if player != null and player.has_node("Inventory"):
-			var inv = player.get_node("Inventory")
-			if inv != null and inv.has_method("get_active_item"):
+	if player != null and player.has_node("Inventory"):
+		var inv = player.get_node("Inventory")
+		if inv != null:
+			if inv.has_method("is_full"):
+				is_inv_full = inv.is_full()
+			if inv.has_method("get_active_item"):
 				var active = inv.get_active_item()
 				if active is KeyData:
-					var key_candidate = active as KeyData
-					if _is_key_needed(key_candidate):
-						return "E - Unlock with " + key_candidate.display_name
+					active_key = active as KeyData
+
+	if not is_open:
+		if active_key != null and _is_key_needed(active_key):
+			return "E - Unlock with " + active_key.display_name
+
+		if not slotted_keys.is_empty():
+			var missing_keys = _get_missing_keys()
+			var missing_name: String = "A key"
+			if not missing_keys.is_empty() and missing_keys[0] != null:
+				missing_name = missing_keys[0].display_name
+
+			if is_inv_full:
+				return "(Locked. " + missing_name + " is needed)"
+			return "E - Take key\n(Locked. " + missing_name + " is needed)"
+
 		return "Locked. A key is needed"
+
+	if not slotted_keys.is_empty():
+		if is_inv_full:
+			return ""
+		var key_to_take: KeyData = slotted_keys.values().back()
+		return "E - Take " + key_to_take.display_name
 
 	return ""
 
@@ -78,23 +94,23 @@ func interact_from_side(player: Node, is_front: bool) -> void:
 	if inv == null:
 		return
 
+	if not is_open and inv.has_method("get_active_item"):
+		var active = inv.get_active_item()
+		if active is KeyData:
+			var key_candidate = active as KeyData
+			if _is_key_needed(key_candidate):
+				if inv.has_method("remove_active_item"):
+					inv.remove_active_item()
+				slot_key(key_candidate, is_front)
+				return
+
 	if not slotted_keys.is_empty():
 		if inv.has_method("is_full") and inv.is_full():
 			return
-		var key_to_take: KeyData = slotted_keys.values()[0]
+		var key_to_take: KeyData = slotted_keys.values().back()
 		if inv.has_method("add_item") and inv.add_item(key_to_take):
 			_unslot_key(key_to_take.key_id)
 		return
-
-	if not is_open:
-		if inv.has_method("get_active_item"):
-			var active = inv.get_active_item()
-			if active is KeyData:
-				var key_candidate = active as KeyData
-				if _is_key_needed(key_candidate):
-					if inv.has_method("remove_active_item"):
-						inv.remove_active_item()
-					slot_key(key_candidate, is_front)
 
 func interact_with_knob(player: Node, knob: Node) -> void:
 	var is_front = true
@@ -175,49 +191,60 @@ func _update_key_visuals() -> void:
 			inst.queue_free()
 	_key_visual_instances.clear()
 
-	var front_mount: Node3D = find_child("KeyMountFront", true, false) as Node3D
-	var back_mount: Node3D = find_child("KeyMountBack", true, false) as Node3D
+	var front_mounts: Array[Node3D] = _get_mounts("KeyMountFront")
+	var back_mounts: Array[Node3D] = _get_mounts("KeyMountBack")
+
+	for m in front_mounts:
+		m.visible = false
+	for m in back_mounts:
+		m.visible = false
 
 	if slotted_keys.is_empty():
-		if front_mount != null:
-			front_mount.visible = false
-		if back_mount != null:
-			back_mount.visible = false
 		return
 
-	var has_front_key: bool = false
-	var has_back_key: bool = false
+	var front_idx: int = 0
+	var back_idx: int = 0
 
-	if front_mount != null or back_mount != null:
-		for key in slotted_keys.values():
-			if key == null or key.model_scene == null:
-				continue
+	for key in slotted_keys.values():
+		if key == null or key.model_scene == null:
+			continue
 
-			var is_front: bool = slotted_key_sides.get(key.key_id, true)
-			var target_mount: Node3D = front_mount if is_front else back_mount
-			if target_mount == null:
-				target_mount = front_mount if front_mount != null else back_mount
+		var is_front: bool = slotted_key_sides.get(key.key_id, true)
+		var target_mount: Node3D = null
 
-			if is_front:
-				has_front_key = true
-			else:
-				has_back_key = true
+		if is_front:
+			if front_idx < front_mounts.size():
+				target_mount = front_mounts[front_idx]
+				front_idx += 1
+			elif not front_mounts.is_empty():
+				target_mount = front_mounts.back()
+		else:
+			if back_idx < back_mounts.size():
+				target_mount = back_mounts[back_idx]
+				back_idx += 1
+			elif not back_mounts.is_empty():
+				target_mount = back_mounts.back()
 
-			if target_mount != null:
-				var model = key.model_scene.instantiate()
-				target_mount.add_child(model)
-				_key_visual_instances.push_back(model)
+		if target_mount != null:
+			target_mount.visible = true
+			var model = key.model_scene.instantiate()
+			target_mount.add_child(model)
+			_key_visual_instances.push_back(model)
 
-		if front_mount != null:
-			front_mount.visible = has_front_key
-		if back_mount != null:
-			back_mount.visible = has_back_key
-	else:
-		var generic_mounts = find_children("KeyMount*", "", true, false)
-		for mount in generic_mounts:
-			if mount is Node3D:
-				for key in slotted_keys.values():
-					if key != null and key.model_scene != null:
-						var model = key.model_scene.instantiate()
-						mount.add_child(model)
-						_key_visual_instances.push_back(model)
+func _get_missing_keys() -> Array[KeyData]:
+	var missing: Array[KeyData] = []
+	for req in required_keys:
+		if req != null and not slotted_keys.has(req.key_id):
+			missing.push_back(req)
+	return missing
+
+func _get_mounts(prefix: String) -> Array[Node3D]:
+	var mounts: Array[Node3D] = []
+	var all_children = find_children(prefix + "*", "", true, false)
+	all_children.sort_custom(func(a, b):
+		return a.name.naturalnocasecmp_to(b.name) < 0
+	)
+	for node in all_children:
+		if node is Node3D:
+			mounts.push_back(node as Node3D)
+	return mounts
