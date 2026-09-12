@@ -1,22 +1,29 @@
 [gd_scene format=3 uid="uid://m72d7tf65rli"]
 
+[ext_resource type="PackedScene" uid="uid://bo8weyriq2wap" path="res://assets/models/Oxygenator.glb" id="1_c2wl3"]
 [ext_resource type="Script" uid="uid://jgy6if5qxjqj" path="res://scripts/devices/OxygenatorInteract.gd" id="1_yihq5"]
 [ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="2_47hmk"]
 [ext_resource type="PackedScene" uid="uid://btlgctyv7cqby" path="res://scenes/devices/Device.tscn" id="3_xb7l8"]
 [ext_resource type="Resource" uid="uid://can4it0jl1d3t" path="res://resources/frank/oxygen_saturation.tres" id="4_14qqh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxy"]
+size = Vector3(0.6484375, 0.7000122, 0.539978)
 
 [node name="Oxygenator" type="Node3D" unique_id=327908620]
+
+[node name="Model" parent="." unique_id=76826910 instance=ExtResource("1_c2wl3")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -0.059229016)
 
 [node name="Interact" type="Area3D" parent="." unique_id=1246778519]
 script = ExtResource("1_yihq5")
 prompt_text = "Use Oxygenator"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=1246778520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34707642, -0.06112671)
 shape = SubResource("BoxShape3D_oxy")
 
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_47hmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5271863, 0, -0.09305042)
 
 [node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_xb7l8")]
 associated_metric = ExtResource("4_14qqh")

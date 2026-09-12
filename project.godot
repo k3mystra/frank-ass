@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*res://scripts/autoload/event_bus.gd"
-GameConfig="*uid://i1k134j80vqx"
+GameConfig="*uid://b8pn482wdfcd5"
 
 [display]
 
@@ -93,14 +93,14 @@ slot_prev={
 ]
 }
 
-[physics]
-
-3d/physics_engine="Jolt Physics"
-
 [layer_names]
 
 3d_physics/layer_1="World"
 3d_physics/layer_2="Interactables"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 
