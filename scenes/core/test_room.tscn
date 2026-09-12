@@ -15,6 +15,11 @@
 [ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="14_key_star"]
 [ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="15_key_triangle"]
 [ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="16_key_circle"]
+[ext_resource type="PackedScene" uid="uid://c4u07nmg3nkck" path="res://scenes/devices/HeartPump.tscn" id="6_u4s8f"]
+[ext_resource type="PackedScene" uid="uid://c0wnyqk6iugau" path="res://scenes/devices/NeuralStimulator.tscn" id="7_jlkcc"]
+[ext_resource type="PackedScene" uid="uid://m72d7tf65rli" path="res://scenes/devices/Oxygenator.tscn" id="8_ue8gf"]
+[ext_resource type="PackedScene" uid="uid://dbcm2yfxc8hec" path="res://scenes/frank/frankestein.tscn" id="9_jlkcc"]
+[ext_resource type="Script" uid="uid://bja708u3kq1dp" path="res://scripts/core/monster_debug_label.gd" id="10_ue8gf"]
 
 [sub_resource type="Environment" id="Environment_test"]
 background_mode = 1
@@ -176,3 +181,30 @@ key_data = ExtResource("15_key_triangle")
 [node name="KeyCirclePickup" parent="." unique_id=646601367 instance=ExtResource("9_key_pickup")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.95, 1.2)
 key_data = ExtResource("16_key_circle")
+[node name="BatteryRack3Slot" parent="." unique_id=1014713735 instance=ExtResource("7_twqg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8032665, -0.014999986, 1.3403897)
+[node name="HeartPump" parent="." unique_id=607287846 instance=ExtResource("6_u4s8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.253784, 0, 0.8487811)
+
+[node name="Oxygenator" parent="." unique_id=327908620 instance=ExtResource("8_ue8gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9261284, 0, 2.769507)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Oxygenator" unique_id=1664797905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09093547, 0.35300493, -0.10538554)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("9_jlkcc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5024767, 0, 5.27179)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Frankestein" unique_id=1974801127]
+
+[node name="FrankDebug" type="Label3D" parent="Frankestein" unique_id=2133148320 node_paths=PackedStringArray("monster")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.02618885, 1.1546137, 0)
+billboard = 1
+text = "STATS
+"
+script = ExtResource("10_ue8gf")
+monster = NodePath("..")
+
+[node name="NeuralStimulator" parent="." unique_id=853675134 instance=ExtResource("7_jlkcc")]
+transform = Transform3D(-0.0047006872, 0, 0.999989, 0, 1, 0, -0.999989, 0, -0.0047006872, -5.7891917, 0, 3.3426185)
