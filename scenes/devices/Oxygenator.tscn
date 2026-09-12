@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://can4it0jl1d3t" path="res://resources/frank/oxygen_saturation.tres" id="4_14qqh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxy"]
+size = Vector3(1, 1.0032959, 1)
 
 [node name="Oxygenator" type="Node3D" unique_id=327908620]
 
@@ -14,9 +15,11 @@ script = ExtResource("1_yihq5")
 prompt_text = "Use Oxygenator"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=1246778520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49871826, 0)
 shape = SubResource("BoxShape3D_oxy")
 
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_47hmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.77271307)
 
 [node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_xb7l8")]
 associated_metric = ExtResource("4_14qqh")

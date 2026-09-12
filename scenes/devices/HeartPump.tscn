@@ -1,22 +1,29 @@
 [gd_scene format=3 uid="uid://c4u07nmg3nkck"]
 
 [ext_resource type="Script" uid="uid://ce5dmdhw7su3r" path="res://scripts/devices/HeartPumpInteract.gd" id="1_bc6mg"]
+[ext_resource type="PackedScene" uid="uid://vmh8h1dabdrm" path="res://assets/models/HeartPump.glb" id="1_ggh4l"]
 [ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="2_cvbmq"]
 [ext_resource type="PackedScene" uid="uid://btlgctyv7cqby" path="res://scenes/devices/Device.tscn" id="3_it48x"]
 [ext_resource type="Resource" uid="uid://crhqekfkdpeiy" path="res://resources/frank/heart_function.tres" id="4_bwxk4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pump"]
+size = Vector3(2.3010254, 2.3690338, 1.2190933)
 
 [node name="HeartPump" type="Node3D" unique_id=607287846]
+
+[node name="Model" parent="." unique_id=442947805 instance=ExtResource("1_ggh4l")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.01115942, -0.046871662, 0.035274506)
 
 [node name="Interact" type="Area3D" parent="." unique_id=2080061450]
 script = ExtResource("1_bc6mg")
 prompt_text = "Use Heart Pump"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=2080061451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008178711, 1.6785507, 0.03836441)
 shape = SubResource("BoxShape3D_pump")
 
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_cvbmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014441967, 0, -0.92424875)
 
 [node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_it48x")]
 associated_metric = ExtResource("4_bwxk4")
