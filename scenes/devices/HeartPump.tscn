@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://c4u07nmg3nkck"]
 
 [ext_resource type="Script" uid="uid://ce5dmdhw7su3r" path="res://scripts/devices/HeartPumpInteract.gd" id="1_bc6mg"]
+[ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="2_cvbmq"]
+[ext_resource type="PackedScene" uid="uid://btlgctyv7cqby" path="res://scenes/devices/Device.tscn" id="3_it48x"]
+[ext_resource type="Resource" uid="uid://crhqekfkdpeiy" path="res://resources/frank/heart_function.tres" id="4_bwxk4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pump"]
-size = Vector3(1, 1, 1)
 
 [node name="HeartPump" type="Node3D" unique_id=607287846]
 
@@ -13,3 +15,9 @@ prompt_text = "Use Heart Pump"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=2080061451]
 shape = SubResource("BoxShape3D_pump")
+
+[node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_cvbmq")]
+
+[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_it48x")]
+associated_metric = ExtResource("4_bwxk4")
+associated_socket = NodePath("../BatterySocket")
