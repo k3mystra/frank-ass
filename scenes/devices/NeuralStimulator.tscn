@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://c0wnyqk6iugau"]
 
 [ext_resource type="Script" uid="uid://c06heepvntdrx" path="res://scripts/devices/NeuralStimulatorInteract.gd" id="1_87r5f"]
+[ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="2_3juxm"]
+[ext_resource type="PackedScene" uid="uid://btlgctyv7cqby" path="res://scenes/devices/Device.tscn" id="3_ukb35"]
+[ext_resource type="Resource" uid="uid://qbddkptq5vbs" path="res://resources/frank/neural_activity.tres" id="4_wdguo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stim"]
-size = Vector3(1, 1, 1)
 
 [node name="NeuralStimulator" type="Node3D" unique_id=853675134]
 
@@ -13,3 +15,9 @@ prompt_text = "Activate Neural Stimulator"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=802490696]
 shape = SubResource("BoxShape3D_stim")
+
+[node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_3juxm")]
+
+[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_ukb35")]
+associated_metric = ExtResource("4_wdguo")
+associated_socket = NodePath("../BatterySocket")
