@@ -4,8 +4,11 @@ extends CharacterBody3D
 
 @export var speed: float = 4.5
 @export var sprint_speed: float = 6.5
+@export var crouch_speed: float = 2.2
 @export var jump_velocity: float = 4.0
 @export var mouse_sensitivity: float = 0.0025
+@export var crouch_head_y: float = 0.85
+@export var crouch_transition_speed: float = 10.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -13,15 +16,20 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera: Camera3D = $Head/Camera3D
 
 var is_sprinting: bool = false
+var is_crouching: bool = false
 var is_jumping: bool = false
 var is_focused: bool = false
 var _focus_tween: Tween = null
 var _focus_exit_callback: Callable = Callable()
+var _standing_head_y: float = 1.65
+var _initial_camera_transform: Transform3D = Transform3D.IDENTITY
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	platform_floor_layers = 0
+	_standing_head_y = head.position.y
+	_initial_camera_transform = camera.transform
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_focused:
@@ -47,20 +55,28 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
+	is_crouching = (Input.is_action_pressed("crouch") if InputMap.has_action("crouch") else Input.is_physical_key_pressed(KEY_CTRL)) and is_on_floor()
+	var target_head_y: float = crouch_head_y if is_crouching else _standing_head_y
+	head.position.y = lerpf(head.position.y, target_head_y, delta * crouch_transition_speed)
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		is_jumping = false
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_crouching:
 		velocity.y = jump_velocity
 		is_jumping = true
 
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
 
-	is_sprinting = Input.is_action_pressed("sprint") if InputMap.has_action("sprint") else Input.is_key_pressed(KEY_SHIFT)
-	var current_speed: float = sprint_speed if is_sprinting else speed
+	is_sprinting = not is_crouching and (Input.is_action_pressed("sprint") if InputMap.has_action("sprint") else Input.is_key_pressed(KEY_SHIFT))
+	var current_speed: float = speed
+	if is_crouching:
+		current_speed = crouch_speed
+	elif is_sprinting:
+		current_speed = sprint_speed
 
 	if direction:
 		velocity.x = direction.x * current_speed
@@ -117,11 +133,13 @@ func unfocus_camera() -> void:
 
 	_focus_tween = create_tween()
 	_focus_tween.set_parallel(true)
-	_focus_tween.tween_property(camera, "global_position", head.global_position, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	_focus_tween.tween_property(camera, "global_basis", head.global_basis, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	var return_pos = head.to_global(_initial_camera_transform.origin)
+	var return_basis = head.global_transform.basis * _initial_camera_transform.basis
+	_focus_tween.tween_property(camera, "global_position", return_pos, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_focus_tween.tween_property(camera, "global_basis", return_basis, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	_focus_tween.chain().tween_callback(func():
 		camera.top_level = false
-		camera.transform = Transform3D.IDENTITY
+		camera.transform = _initial_camera_transform
 	)
 
 	if _focus_exit_callback.is_valid():

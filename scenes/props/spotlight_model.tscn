@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://htkh5sr3xh2w"]
+
+[ext_resource type="PackedScene" uid="uid://bmlsv4clu0luc" path="res://assets/models/SPOTLIGHT.glb" id="1_8jn6a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vy7cj"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[node name="SPOTLIGHT" unique_id=313381767 instance=ExtResource("1_8jn6a")]
+
+[node name="THE LIGHT" parent="." index="1" unique_id=160821572]
+surface_material_override/1 = SubResource("StandardMaterial3D_vy7cj")

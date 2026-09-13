@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://cl2q6yurtd7yq"]
+
+[ext_resource type="FontFile" uid="uid://b55fyfv0wn2q4" path="res://assets/fonts/Creepster-Regular.ttf" id="1_creepster"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_board"]
+size = Vector3(2.4, 1.8, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_board"]
+albedo_color = Color(0.06919747, 0.18445009, 0.08350218, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="BoxMesh_tile"]
+size = Vector3(0.22, 0.22, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_red"]
+albedo_color = Color(0.92, 0.15, 0.15, 1)
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.92, 0.15, 0.15, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_green"]
+albedo_color = Color(0.15, 0.85, 0.25, 1)
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.15, 0.85, 0.25, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blue"]
+albedo_color = Color(0.18, 0.45, 0.95, 1)
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.18, 0.45, 0.95, 1)
+emission_energy_multiplier = 0.6
+
+[node name="Room3aHints" type="Node3D" unique_id=901685777]
+
+[node name="Blackboard" type="MeshInstance3D" parent="." unique_id=400581592]
+mesh = SubResource("BoxMesh_board")
+surface_material_override/0 = SubResource("StandardMaterial3D_board")
+
+[node name="Equation1_Red1" type="MeshInstance3D" parent="." unique_id=417443399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0.5, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_red")
+
+[node name="Plus1" type="Label3D" parent="." unique_id=1380776935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.5, 0.02)
+modulate = Color(0.95, 0.93, 0.85, 1)
+text = "+"
+font = ExtResource("1_creepster")
+font_size = 56
+outline_size = 8
+
+[node name="Equation1_Red2" type="MeshInstance3D" parent="." unique_id=1674969013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.5, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_red")
+
+[node name="Equation1_Red3" type="MeshInstance3D" parent="." unique_id=1515592741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, -0.19404471, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_red")
+
+[node name="Equals1" type="Label3D" parent="." unique_id=946289181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.5, 0.02)
+modulate = Color(0.95, 0.93, 0.85, 1)
+text = "=  2"
+font = ExtResource("1_creepster")
+font_size = 56
+outline_size = 8
+
+[node name="Minus" type="Label3D" parent="." unique_id=1302346877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.15, 0.02)
+modulate = Color(0.95, 0.93, 0.85, 1)
+text = "-"
+font = ExtResource("1_creepster")
+font_size = 56
+outline_size = 8
+
+[node name="Equation2_Green" type="MeshInstance3D" parent="." unique_id=656674638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.15, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_green")
+
+[node name="Equals2" type="Label3D" parent="." unique_id=306992818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.15, 0.02)
+modulate = Color(0.95, 0.93, 0.85, 1)
+text = "=  7"
+font = ExtResource("1_creepster")
+font_size = 56
+outline_size = 8
+
+[node name="Plus2" type="Label3D" parent="." unique_id=1201364545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.2, 0.02)
+modulate = Color(0.95, 0.93, 0.85, 1)
+text = "+"
+font = ExtResource("1_creepster")
+font_size = 56
+outline_size = 8
+
+[node name="Equation3_Blue" type="MeshInstance3D" parent="." unique_id=1277888947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6435223, -0.2, 0.02)
+visible = false
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_blue")
+
+[node name="Equals3" type="Label3D" parent="." unique_id=2093239289]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.2, 0.02)
+modulate = Color(0.95, 0.93, 0.85, 1)
+text = "=  9"
+font = ExtResource("1_creepster")
+font_size = 56
+outline_size = 8
+
+[node name="Divider" type="Label3D" parent="." unique_id=1831804425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0.02)
+modulate = Color(0.6, 0.6, 0.6, 0.8)
+text = "----------------------------------"
+outline_size = 4
+
+[node name="Seq_Red" type="MeshInstance3D" parent="." unique_id=312161124]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.75, -0.62, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_red")
+
+[node name="Seq_Blue1" type="MeshInstance3D" parent="." unique_id=2102089094]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.21, -0.62, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_blue")
+
+[node name="Seq_Blue3" type="MeshInstance3D" parent="." unique_id=251051791]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.21, -0.62, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_blue")
+
+[node name="Seq_Green" type="MeshInstance3D" parent="." unique_id=1504782539]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.33, -0.62, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_green")
+
+[node name="Seq_Blue2" type="MeshInstance3D" parent="." unique_id=1597138587]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.87, -0.62, 0.02)
+mesh = SubResource("BoxMesh_tile")
+surface_material_override/0 = SubResource("StandardMaterial3D_blue")

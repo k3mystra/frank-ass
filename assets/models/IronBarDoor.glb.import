@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bmlsv4clu0luc"
-path="res://.godot/imported/SPOTLIGHT.glb-b60f7bbb562343e6f18b76ba2096978d.scn"
+uid="uid://dglvxmdnchfyi"
+path="res://.godot/imported/IronBarDoor.glb-c3496d7072c1d4b7c88775ad9fa8e66a.scn"
 
 [deps]
 
-source_file="res://assets/models/SPOTLIGHT.glb"
-dest_files=["res://.godot/imported/SPOTLIGHT.glb-b60f7bbb562343e6f18b76ba2096978d.scn"]
+source_file="res://assets/models/IronBarDoor.glb"
+dest_files=["res://.godot/imported/IronBarDoor.glb-c3496d7072c1d4b7c88775ad9fa8e66a.scn"]
 
 [params]
 
@@ -39,12 +39,9 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
-"PATH:THE BASE": {
-"generate/physics": true
-},
-"PATH:THE LIGHT": {
+"PATH:IronBarDoor": {
 "generate/physics": true,
-"mesh_instance/cast_shadow": 0
+"physics/shape_type": 2
 }
 }
 }
