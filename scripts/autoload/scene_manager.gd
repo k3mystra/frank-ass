@@ -1,8 +1,5 @@
 extends Node
 
-@export var main_menu_scene: PackedScene
-@export var game_scene: PackedScene
-
 var current_scene = null
 
 func _ready():
