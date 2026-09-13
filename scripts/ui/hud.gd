@@ -83,18 +83,18 @@ func _update_slot_highlights() -> void:
 	for i in range(slot_panels.size()):
 		var panel: Panel = slot_panels[i]
 		if i == active_slot:
-			panel.modulate = Color(1.2, 1.2, 0.4) 
+			panel.modulate = Color(1.2, 1.2, 0.4)
 		else:
 			panel.modulate = Color(0.6, 0.6, 0.6)
 
-# func _on_game_ended(success: bool, reason: String) -> void:
-# 	if game_over_banner == null:
-# 		return
+func _on_game_ended(success: bool, reason: String) -> void:
+	if game_over_banner == null:
+		return
 
-# 	game_over_banner.visible = true
-# 	if success:
-# 		game_over_title.text = "SURVIVAL ACHIEVED"
-# 		game_over_subtext.text = reason + "\nLightning strikes... The creature awakens."
-# 	else:
-# 		game_over_title.text = "EXPERIMENT FAILED"
-# 		game_over_subtext.text = reason + "\nDarkness falls... Then a thunderous spark."
+	game_over_banner.visible = true
+	if success:
+		game_over_title.text = "SURVIVAL ACHIEVED"
+		game_over_subtext.text = reason + "\nLightning strikes... The creature awakens."
+	else:
+		game_over_title.text = "EXPERIMENT FAILED"
+		game_over_subtext.text = reason + "\nDarkness falls... Then a thunderous spark."
