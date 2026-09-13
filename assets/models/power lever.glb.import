@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cbibvhjkjt2if"
-path="res://.godot/imported/power lever.glb-e1eed1f85a481316137a6ad099b902fe.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/power lever.glb"
-dest_files=["res://.godot/imported/power lever.glb-e1eed1f85a481316137a6ad099b902fe.scn"]
 
 [params]
 

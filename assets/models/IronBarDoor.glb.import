@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dglvxmdnchfyi"
-path="res://.godot/imported/IronBarDoor.glb-c3496d7072c1d4b7c88775ad9fa8e66a.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/IronBarDoor.glb"
-dest_files=["res://.godot/imported/IronBarDoor.glb-c3496d7072c1d4b7c88775ad9fa8e66a.scn"]
 
 [params]
 
