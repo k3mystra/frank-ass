@@ -4,6 +4,8 @@ extends Node3D
 signal bar_opened
 
 @export var target_terminal: CodeTerminal = null
+
+@export var target_door: Door = null
 @export var linked_spotlight: Light3D = null
 @export var linked_wall_hint: Node3D = null
 @export var drop_distance: float = 3.5
@@ -21,7 +23,22 @@ func _ready() -> void:
 	if target_terminal != null:
 		connect_terminal(target_terminal)
 
+	if target_door != null:
+		connect_door(target_door)
+
 	_update_power_state()
+
+func connect_door(door: Door) -> void:
+	if door == null or not is_instance_valid(door):
+		return
+	if not door.door_opened.is_connected(_on_door_opened):
+		door.door_opened.connect(_on_door_opened)
+	if door.is_open and not is_open:
+		open_bar()
+
+func _on_door_opened() -> void:
+	if not is_open:
+		open_bar()
 
 func connect_terminal(terminal: CodeTerminal) -> void:
 	if terminal == null or not is_instance_valid(terminal):
@@ -64,4 +81,3 @@ func open_bar() -> void:
 	var target_y: float = _closed_y - drop_distance
 	_tween = create_tween()
 	_tween.tween_property(self, "position:y", target_y, drop_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-

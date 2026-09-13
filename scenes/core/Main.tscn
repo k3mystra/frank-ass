@@ -22,6 +22,7 @@
 [ext_resource type="FontFile" uid="uid://b55fyfv0wn2q4" path="res://assets/fonts/Creepster-Regular.ttf" id="18_ship8"]
 [ext_resource type="PackedScene" uid="uid://cl2q6yurtd7yq" path="res://scenes/props/room3a_hints.tscn" id="19_hints"]
 [ext_resource type="PackedScene" uid="uid://bd2vee3xx6f21" path="res://scenes/props/room2_hints.tscn" id="22_ujn3e"]
+[ext_resource type="PackedScene" uid="uid://b5ik0w1aujqt0" path="res://scenes/props/power_level.tscn" id="23_l85qj"]
 
 [sub_resource type="Environment" id="Environment_gothic"]
 background_mode = 1
@@ -108,9 +109,8 @@ transform = Transform3D(4.942469, 0, 0.7563042, 0, 5, 0, -0.7563042, 0, 4.942469
 light_energy = 0.3
 
 [node name="Spotlight2" parent="LightSource" unique_id=1374342662 instance=ExtResource("8_x24xt")]
-transform = Transform3D(1, 0, 0, 0, -0.30775523, 0.9514656, 0, -0.9514656, -0.30775523, 1.5287904, 6.7054443, 25.677475)
+transform = Transform3D(1, 0, 0, 0, -0.45109564, 0.8924756, 0, -0.8924756, -0.45109564, 1.5287904, 5.6447124, 25.677475)
 light_color = Color(1, 0.85882354, 0.47058824, 1)
-light_energy = 60.0
 spot_attenuation = 1.0
 
 [node name="Lantern3" parent="LightSource" unique_id=1781085846 instance=ExtResource("11_dau2k")]
@@ -233,5 +233,11 @@ horizontal_alignment = 0
 [node name="Room3aHints" parent="." unique_id=1604635836 instance=ExtResource("19_hints")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0475726, 2.7054079, 12.030283)
 
-[node name="IronBarDoor2" parent="." unique_id=1923259776 instance=ExtResource("10_1yraq")]
+[node name="Room3IronBar" parent="." unique_id=1923259776 node_paths=PackedStringArray("target_door") instance=ExtResource("10_1yraq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.1995993, 0.02100885, 22.927107)
+script = ExtResource("11_tyork")
+target_door = NodePath("../StarDoor")
+drop_duration = 8.0
+
+[node name="PowerLevel" parent="." unique_id=15015721 instance=ExtResource("23_l85qj")]
+transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, 1.4851351, 1.0460845, 27.63001)
