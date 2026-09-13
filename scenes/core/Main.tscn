@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://chjev5vf0yput"]
 
-[ext_resource type="PackedScene" path="res://scenes/core/main_level.tscn" id="1_fun78"]
+[ext_resource type="PackedScene" uid="uid://5jxecl3adc15" path="res://scenes/core/main_level.tscn" id="1_fun78"]
 [ext_resource type="PackedScene" uid="uid://dbcm2yfxc8hec" path="res://scenes/frank/frankestein.tscn" id="1_kitw3"]
 [ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="2_fun78"]
 [ext_resource type="PackedScene" uid="uid://b8pickup001" path="res://scenes/props/battery_pickup.tscn" id="4_5pwbx"]
+[ext_resource type="PackedScene" uid="uid://nv4hw6k35ktt" path="res://scenes/devices/Monitor.tscn" id="4_kitw3"]
 [ext_resource type="PackedScene" uid="uid://b8keypickup01" path="res://scenes/props/key_pickup.tscn" id="5_a4rsn"]
 [ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="6_1wb4g"]
 [ext_resource type="PackedScene" uid="uid://bmkybmq228v41" path="res://scenes/props/circle_door.tscn" id="6_a4rsn"]
@@ -14,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://3y1cyu7d30cl" path="res://scenes/props/Lantern.tscn" id="11_dau2k"]
 [ext_resource type="PackedScene" uid="uid://b8stardoor01" path="res://scenes/props/star_door.tscn" id="12_ld2r7"]
 [ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="13_nxm05"]
-[ext_resource type="PackedScene" uid="uid://nv4hw6k35ktt" path="res://scenes/devices/Monitor.tscn" id="4_kitw3"]
+[ext_resource type="PackedScene" uid="uid://c4u07nmg3nkck" path="res://scenes/devices/HeartPump.tscn" id="15_wpo1s"]
+[ext_resource type="PackedScene" uid="uid://c0wnyqk6iugau" path="res://scenes/devices/NeuralStimulator.tscn" id="16_ship8"]
+[ext_resource type="PackedScene" uid="uid://m72d7tf65rli" path="res://scenes/devices/Oxygenator.tscn" id="17_d7485"]
 
 [sub_resource type="Environment" id="Environment_gothic"]
 background_mode = 1
@@ -140,3 +143,15 @@ transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0.49670482, -1.9202974, 16
 [node name="KeyPickup3" parent="." unique_id=459462946 instance=ExtResource("5_a4rsn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.550731, 0.9987402, -0.6962464)
 key_data = ExtResource("13_nxm05")
+
+[node name="HeartPump" parent="." unique_id=607287846 instance=ExtResource("15_wpo1s")]
+transform = Transform3D(0.9988676, 0, 0.047577053, 0, 1, 0, -0.047577053, 0, 0.9988676, -0.66198194, -0.113444984, -1.4989989)
+
+[node name="NeuralStimulator" parent="." unique_id=853675134 instance=ExtResource("16_ship8")]
+transform = Transform3D(0.050087422, 0, 0.99874485, 0, 1, 0, -0.99874485, 0, 0.050087422, -0.6563226, 1.1984733, 1.4453471)
+
+[node name="Oxygenator" parent="." unique_id=327908620 instance=ExtResource("17_d7485")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67586833, 1.1984733, 2.679804)
+
+[node name="Monitor" parent="." unique_id=709485960 instance=ExtResource("4_kitw3")]
+transform = Transform3D(0.20770672, -0.18037589, 0.9614169, -9.313226e-10, 0.9828518, 0.18439737, -0.97819114, -0.038300574, 0.20414491, -2.4900925, 1.5591102, -3.4301293)
