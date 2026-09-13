@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dpssm7ide38vy"]
+
+[ext_resource type="Script" uid="uid://0vut6376j4dh" path="res://scripts/core/menu.gd" id="1_78ebe"]
+[ext_resource type="Texture2D" uid="uid://53e10p6monup" path="res://assets/images/title.png" id="1_k8016"]
+[ext_resource type="PackedScene" uid="uid://chjev5vf0yput" path="res://scenes/core/Main.tscn" id="2_3qs7y"]
+[ext_resource type="Theme" uid="uid://cp6y3j32f2mku" path="res://resources/theme/ui_theme.tres" id="2_cbqj3"]
+
+[node name="Menu" type="Node" unique_id=301088091]
+script = ExtResource("1_78ebe")
+game_scene = ExtResource("2_3qs7y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1767531987]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=733513774]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=493797742]
+layout_mode = 2
+
+[node name="TitleImg" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=855864172]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+theme = ExtResource("2_cbqj3")
+texture = ExtResource("1_k8016")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=127977171]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("2_cbqj3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1925744478]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_cbqj3")
+
+[node name="PlayBtn" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=261003754]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("2_cbqj3")
+text = "Play"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1285196552]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("2_cbqj3")
+
+[node name="ExitBtn" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1073210750]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("2_cbqj3")
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]

@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://qbddkptq5vbs" path="res://resources/frank/neural_activity.tres" id="7_eutsl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1b0f"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0, 0, 0, 0)
 
 [node name="MonitorView" type="CanvasLayer" unique_id=1646200909]
 

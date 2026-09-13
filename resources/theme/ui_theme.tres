@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://cp6y3j32f2mku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jowd2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_obtbe"]
+
+[resource]
+Button/font_sizes/font_size = 30
+HSeparator/styles/separator = SubResource("StyleBoxEmpty_jowd2")
+VSeparator/styles/separator = SubResource("StyleBoxEmpty_obtbe")
