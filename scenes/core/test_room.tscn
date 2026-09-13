@@ -20,6 +20,10 @@
 [ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="14_key_star"]
 [ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="15_key_triangle"]
 [ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="16_key_circle"]
+[ext_resource type="PackedScene" uid="uid://ykw0cmr82x54" path="res://scenes/props/terminal.tscn" id="17_terminal"]
+[ext_resource type="Script" uid="uid://cjktbhr2l23d" path="res://scripts/core/terminal_debug_label.gd" id="18_term_label"]
+[ext_resource type="PackedScene" uid="uid://c5safebox001" path="res://scenes/props/safebox.tscn" id="19_safebox"]
+[ext_resource type="AudioStream" uid="uid://ragptikklv5a" path="res://assets/audio/RainBGMusic.mp3" id="20_rain_bg"]
 [ext_resource type="PackedScene" uid="uid://nv4hw6k35ktt" path="res://scenes/devices/Monitor.tscn" id="21_uier1"]
 
 [sub_resource type="Environment" id="Environment_test"]
@@ -62,6 +66,11 @@ charge = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=980852253]
 environment = SubResource("Environment_test")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=994827110]
+stream = ExtResource("20_rain_bg")
+volume_db = 10.0
+autoplay = true
 
 [node name="CeilingLight" type="OmniLight3D" parent="." unique_id=555236333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -168,11 +177,11 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 1.1, 0, -1)
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 3.3, 0, -1)
 
 [node name="KeyEyePickup" parent="." unique_id=1737319622 instance=ExtResource("9_key_pickup")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.95, 1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0093696, 1.5044568, 1.1086003)
 key_data = ExtResource("10_key_eye")
 
 [node name="KeyStarPickup" parent="." unique_id=980058555 instance=ExtResource("9_key_pickup")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.95, 1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4906304, 1.5044568, 1.1086003)
 key_data = ExtResource("14_key_star")
 
 [node name="KeyTrianglePickup" parent="." unique_id=1107301280 instance=ExtResource("9_key_pickup")]
@@ -212,5 +221,67 @@ monster = NodePath("..")
 [node name="NeuralStimulator" parent="." unique_id=853675134 instance=ExtResource("7_jlkcc")]
 transform = Transform3D(-0.0047006872, 0, 0.999989, 0, 1, 0, -0.999989, 0, -0.0047006872, -5.7891917, 0, 3.3426185)
 
+[node name="TerminalPillar" type="CSGBox3D" parent="." unique_id=1157668720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.45, 1.2)
+use_collision = true
+size = Vector3(0.5, 0.9, 0.5)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="Terminal" parent="." unique_id=2124261425 instance=ExtResource("17_terminal")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.1, 1.3409718, 1.2)
+
+[node name="TerminalDebugLabel" type="Label3D" parent="." unique_id=91014177 node_paths=PackedStringArray("target_terminal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.55, 1.2)
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "Locked (Code: 0830)"
+font_size = 28
+outline_size = 6
+script = ExtResource("18_term_label")
+target_terminal = NodePath("../Terminal")
+
+[node name="SafeboxTable" type="CSGBox3D" parent="." unique_id=1662127317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.45, 1.2)
+use_collision = true
+size = Vector3(1, 0.9, 1)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="Safebox" parent="." unique_id=2074367444 node_paths=PackedStringArray("target_terminal") instance=ExtResource("19_safebox")]
+transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, 2, 0.9, 1.2)
+target_terminal = NodePath("../Terminal")
+
+[node name="TerminalPillar2" type="CSGBox3D" parent="." unique_id=1157668721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.45, 1.2)
+use_collision = true
+size = Vector3(0.5, 0.9, 0.5)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="Terminal2" parent="." unique_id=2124261426 instance=ExtResource("17_terminal")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 1.3409718, 1.2)
+target_code = "1818"
+
+[node name="TerminalDebugLabel2" type="Label3D" parent="." unique_id=91014178 node_paths=PackedStringArray("target_terminal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.55, 1.2)
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "Locked (Code: 1818)"
+font_size = 28
+outline_size = 6
+script = ExtResource("18_term_label")
+target_terminal = NodePath("../Terminal2")
+
+[node name="SafeboxTable2" type="CSGBox3D" parent="." unique_id=1662127318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.45, 1.2)
+use_collision = true
+size = Vector3(1, 0.9, 1)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="Safebox2" parent="." unique_id=2074367445 node_paths=PackedStringArray("target_terminal") instance=ExtResource("19_safebox")]
+transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, -2.5, 0.9, 1.2)
+target_terminal = NodePath("../Terminal2")
+
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="play"]
 [node name="Monitor" parent="." unique_id=709485960 instance=ExtResource("21_uier1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7210317, -2.2654061)

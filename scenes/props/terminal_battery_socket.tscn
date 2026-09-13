@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://chd4h8r5l20a5"]
+
+[ext_resource type="Script" uid="uid://dxx0j3758i335" path="res://scripts/interactables/battery_socket.gd" id="1_k4qqq"]
+[ext_resource type="PackedScene" uid="uid://d26gh8yj8tj72" path="res://assets/models/NewBattery.glb" id="2_j3t0f"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_socket"]
+height = 0.03970459
+radius = 0.08935547
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qbr6i"]
+height = 0.30213165
+radius = 0.08886719
+
+[node name="TerminalBatterySocket" type="Area3D" unique_id=1839201948]
+collision_layer = 2
+script = ExtResource("1_k4qqq")
+prompt_text = "Insert Battery"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1839201949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019852294, 0)
+shape = SubResource("CylinderShape3D_socket")
+
+[node name="BatteryCollision" type="CollisionShape3D" parent="." unique_id=399441801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19156265, 0)
+shape = SubResource("CylinderShape3D_qbr6i")
+disabled = true
+
+[node name="SolidObstacle" type="StaticBody3D" parent="." unique_id=399441800]
+
+[node name="ThrowHitBox" type="CollisionShape3D" parent="SolidObstacle" unique_id=318607514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19156265, 0)
+shape = SubResource("CylinderShape3D_qbr6i")
+disabled = true
+
+[node name="BatteryModel" parent="." unique_id=1839201951 instance=ExtResource("2_j3t0f")]
+transform = Transform3D(2.385, 0, 0, 0, 2.385, 0, 0, 0, 2.385, 0, 0.02, 0)
+visible = false

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8b1fba2gwt6r"
-path="res://.godot/imported/HUMAN SHADOW.glb-761e3c8d0d774c4365df6dfa73972456.scn"
+uid="uid://dtnqir7trjp7h"
+path="res://.godot/imported/EyeTerminal.glb-5408b793e061b996c00ef140cfc7017d.scn"
 
 [deps]
 
-source_file="res://assets/models/HUMAN SHADOW.glb"
-dest_files=["res://.godot/imported/HUMAN SHADOW.glb-761e3c8d0d774c4365df6dfa73972456.scn"]
+source_file="res://assets/models/EyeTerminal.glb"
+dest_files=["res://.godot/imported/EyeTerminal.glb-5408b793e061b996c00ef140cfc7017d.scn"]
 
 [params]
 

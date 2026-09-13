@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8b1fba2gwt6r"
-path="res://.godot/imported/HUMAN SHADOW.glb-761e3c8d0d774c4365df6dfa73972456.scn"
+uid="uid://c7gv4dm5bqb1o"
+path="res://.godot/imported/FrankensteinLevel Design.glb-1fca7290f01d2a3f24b6c70cb4bd625e.scn"
 
 [deps]
 
-source_file="res://assets/models/HUMAN SHADOW.glb"
-dest_files=["res://.godot/imported/HUMAN SHADOW.glb-761e3c8d0d774c4365df6dfa73972456.scn"]
+source_file="res://assets/models/FrankensteinLevel Design.glb"
+dest_files=["res://.godot/imported/FrankensteinLevel Design.glb-1fca7290f01d2a3f24b6c70cb4bd625e.scn"]
 
 [params]
 

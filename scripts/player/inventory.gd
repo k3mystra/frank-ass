@@ -14,6 +14,10 @@ func _ready() -> void:
 	EventBus.inventory_updated.emit(slots)
 
 func _unhandled_input(event: InputEvent) -> void:
+	var player = owner as PlayerController
+	if player != null and player.has_method("is_camera_focused") and player.is_camera_focused():
+		return
+
 	if event.is_action_pressed("slot_1"):
 		set_active_slot(0)
 	elif event.is_action_pressed("slot_2"):
