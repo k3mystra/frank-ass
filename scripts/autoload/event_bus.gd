@@ -1,16 +1,23 @@
 extends Node
 
 ## Emitted when a machine's vital meter changes (value: 0.0 - METER_MAX_CAPACITY seconds)
-signal meter_changed(machine_id: StringName, value: float)
+signal metric_updated(metric_name: StringName, value: float)
+
+# Emit on metric reaching alarm treshold
+signal metric_alarm_reached
 
 ## Emitted when a meter reaches 0s and starts its 30s critical failure countdown
-signal critical_failure_started(machine_id: StringName)
+signal critical_started(metric_name: StringName)
 
 ## Emitted when a meter recovers above 0s and cancels the critical failure countdown
-signal critical_failure_resolved(machine_id: StringName)
+signal critical_resolved(metric_name: StringName)
 
 ## Emitted when a critical failure countdown reaches 0 without recovery (triggers game over)
-signal critical_failure_expired(machine_id: StringName)
+signal critical_expired(metric_name: StringName)
+
+# On Alarm active
+signal alarm_started(metric_name: StringName)
+signal alarm_stopped(metric_name: StringName)
 
 ## Emitted when the auxiliary power knife switch in Room 3B is pulled 
 signal power_switch_activated

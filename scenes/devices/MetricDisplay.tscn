@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://df7o1bqqv78e"]
+
+[ext_resource type="Script" uid="uid://de8sc1wquuw3p" path="res://scripts/devices/metric_display.gd" id="1_m6abi"]
+[ext_resource type="StyleBox" uid="uid://bajlfqu3h8e3p" path="res://resources/metric_bar/bar_bg.tres" id="2_fu4yh"]
+[ext_resource type="Texture2D" uid="uid://vc2pd4oceei3" path="res://assets/images/alert.png" id="2_r3cec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0krqx"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="MetricDisplay" type="HBoxContainer" unique_id=1759186624]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+script = ExtResource("1_m6abi")
+critical_color = Color(1, 0, 0, 1)
+normal_color = Color(0, 0, 0, 0)
+
+[node name="Icon" type="TextureRect" parent="." unique_id=548417705]
+layout_mode = 2
+texture = ExtResource("2_r3cec")
+expand_mode = 2
+
+[node name="ValueBar" type="ProgressBar" parent="." unique_id=334869168]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = ExtResource("2_fu4yh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0krqx")
+value = 40.0
+show_percentage = false
+
+[node name="WarningIcon" type="TextureRect" parent="." unique_id=848507900]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_r3cec")
+expand_mode = 2

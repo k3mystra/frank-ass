@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://cjktbhr2l23d" path="res://scripts/core/terminal_debug_label.gd" id="18_term_label"]
 [ext_resource type="PackedScene" uid="uid://c5safebox001" path="res://scenes/props/safebox.tscn" id="19_safebox"]
 [ext_resource type="AudioStream" uid="uid://ragptikklv5a" path="res://assets/audio/RainBGMusic.mp3" id="20_rain_bg"]
+[ext_resource type="PackedScene" uid="uid://nv4hw6k35ktt" path="res://scenes/devices/Monitor.tscn" id="21_uier1"]
 
 [sub_resource type="Environment" id="Environment_test"]
 background_mode = 1
@@ -191,6 +192,9 @@ key_data = ExtResource("15_key_triangle")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.95, 1.2)
 key_data = ExtResource("16_key_circle")
 
+[node name="BatteryRack3Slot2" parent="." unique_id=897119604 instance=ExtResource("7_twqg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8032665, -0.014999986, 1.3403897)
+
 [node name="HeartPump" parent="." unique_id=607287846 instance=ExtResource("6_u4s8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.253784, 0, 0.8487811)
 
@@ -279,3 +283,5 @@ transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0
 target_terminal = NodePath("../Terminal2")
 
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="play"]
+[node name="Monitor" parent="." unique_id=709485960 instance=ExtResource("21_uier1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7210317, -2.2654061)
