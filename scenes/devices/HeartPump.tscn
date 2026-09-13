@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008178711, 1.6785507, 0.03
 shape = SubResource("BoxShape3D_pump")
 
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_cvbmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014441967, 0, -0.92424875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014441967, 1.1245043, -0.92424875)
 
 [node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_it48x")]
 associated_metric = ExtResource("4_bwxk4")
