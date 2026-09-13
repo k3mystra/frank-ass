@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://3y1cyu7d30cl"]
+
+[ext_resource type="PackedScene" uid="uid://c8nmt4emr6p0u" path="res://assets/models/Lantern.glb" id="1_8tga8"]
+
+[node name="OmniLight3D" type="OmniLight3D" unique_id=1781085846]
+light_color = Color(0.88318664, 0.66115236, 0.279982, 1)
+
+[node name="Lantern" parent="." unique_id=1831954152 instance=ExtResource("1_8tga8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52638257, 0)
