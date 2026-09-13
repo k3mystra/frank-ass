@@ -2,12 +2,52 @@
 
 [ext_resource type="Script" uid="uid://0vut6376j4dh" path="res://scripts/core/menu.gd" id="1_78ebe"]
 [ext_resource type="Texture2D" uid="uid://53e10p6monup" path="res://assets/images/title.png" id="1_k8016"]
-[ext_resource type="PackedScene" uid="uid://chjev5vf0yput" path="res://scenes/core/Main.tscn" id="2_3qs7y"]
+[ext_resource type="PackedScene" uid="uid://ni84mg51mmv6" path="res://scenes/core/tutorial.tscn" id="2_3qs7y"]
 [ext_resource type="Theme" uid="uid://cp6y3j32f2mku" path="res://resources/theme/ui_theme.tres" id="2_cbqj3"]
+[ext_resource type="Texture2D" uid="uid://ddkkkylvulgj0" path="res://assets/images/the_game.png" id="5_wwfr1"]
+
+[sub_resource type="Animation" id="Animation_4tit8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/TitleImg/TheGame:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wwfr1"]
+resource_name = "rotate"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/TitleImg/TheGame:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tit8"]
+_data = {
+&"RESET": SubResource("Animation_4tit8"),
+&"rotate": SubResource("Animation_wwfr1")
+}
 
 [node name="Menu" type="Node" unique_id=301088091]
 script = ExtResource("1_78ebe")
 game_scene = ExtResource("2_3qs7y")
+stop_chance = 0.3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1767531987]
 
@@ -22,12 +62,22 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="TitleImg" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=855864172]
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(0, 450)
 layout_mode = 2
 theme = ExtResource("2_cbqj3")
 texture = ExtResource("1_k8016")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="TheGame" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer/TitleImg" unique_id=1040747877]
+layout_mode = 0
+offset_left = 756.0
+offset_top = 383.0
+offset_right = 1012.0
+offset_bottom = 451.0
+pivot_offset = Vector2(128, 34)
+texture = ExtResource("5_wwfr1")
+expand_mode = 2
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=127977171]
 custom_minimum_size = Vector2(0, 50)
@@ -56,5 +106,20 @@ layout_mode = 2
 theme = ExtResource("2_cbqj3")
 text = "Exit"
 
+[node name="StopTimer" type="Timer" parent="." unique_id=2006139672]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=59399763]
+root_node = NodePath("../CanvasLayer")
+libraries/ = SubResource("AnimationLibrary_4tit8")
+autoplay = &"rotate"
+
+[node name="CycleTimer" type="Timer" parent="." unique_id=2138161022]
+wait_time = 0.5
+autostart = true
+
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]
+[connection signal="timeout" from="StopTimer" to="." method="_on_stop_timer_timeout"]
+[connection signal="timeout" from="CycleTimer" to="." method="_on_cycle_timer_timeout"]
