@@ -41,7 +41,9 @@ func toggle_alarm() -> void:
 	is_alarm_active = not is_alarm_active
 	if is_alarm_active:
 		print("Alarm Active")
+		EventBus.alarm_started.emit()
 	else:
+		EventBus.alarm_stopped.emit()
 		print("Alarm Stop")
 
 
@@ -50,9 +52,11 @@ func toggle_critical(i: int) -> void:
 	if critical_state[i]:
 		print("%s is critical!" % metrics[i].name)
 		critical_timers[i].start()
+		EventBus.critical_started.emit(metrics[i].name)
 	else:
 		print("%s is normal" % metrics[i].name)
 		critical_timers[i].stop()
+		EventBus.critical_resolved.emit(metrics[i].name)
 
 
 func _on_tick_timeout() -> void:
@@ -62,6 +66,8 @@ func _on_tick_timeout() -> void:
 			new_alarm_state = metrics[i].inc_value() or new_alarm_state
 		else:
 			new_alarm_state = metrics[i].dec_value() or new_alarm_state
+
+		EventBus.metric_updated.emit(metrics[i].name)
 
 		var is_critical = metrics[i].value <= 0.0
 		if critical_state[i] != is_critical:

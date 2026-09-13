@@ -20,6 +20,7 @@
 [ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="14_key_star"]
 [ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="15_key_triangle"]
 [ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="16_key_circle"]
+[ext_resource type="PackedScene" uid="uid://nv4hw6k35ktt" path="res://scenes/devices/Monitor.tscn" id="21_uier1"]
 
 [sub_resource type="Environment" id="Environment_test"]
 background_mode = 1
@@ -210,3 +211,6 @@ monster = NodePath("..")
 
 [node name="NeuralStimulator" parent="." unique_id=853675134 instance=ExtResource("7_jlkcc")]
 transform = Transform3D(-0.0047006872, 0, 0.999989, 0, 1, 0, -0.999989, 0, -0.0047006872, -5.7891917, 0, 3.3426185)
+
+[node name="Monitor" parent="." unique_id=709485960 instance=ExtResource("21_uier1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7210317, -2.2654061)
