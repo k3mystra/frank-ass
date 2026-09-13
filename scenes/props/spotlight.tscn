@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://g51japujnfem"]
+
+[ext_resource type="PackedScene" uid="uid://htkh5sr3xh2w" path="res://scenes/props/spotlight_model.tscn" id="1_tf5jb"]
+
+[node name="Spotlight" type="SpotLight3D" unique_id=625142491]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+light_energy = 13.0
+shadow_enabled = true
+shadow_blur = 2.0
+spot_range = 4096.0
+spot_attenuation = 2.0
+spot_angle = 17.564154
+
+[node name="SPOTLIGHT" parent="." unique_id=1760944315 instance=ExtResource("1_tf5jb")]
+transform = Transform3D(0.49999988, 1.6720154e-08, 2.980232e-08, 2.9900963e-08, -0.47151566, -0.16635208, 1.4130663e-08, 0.16635203, -0.4715156, -0.036759447, 0.5898562, -0.40789446)

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bmlsv4clu0luc"
-path="res://.godot/imported/SPOTLIGHT.glb-b60f7bbb562343e6f18b76ba2096978d.scn"
+uid="uid://drah2xh33pau7"
+path="res://.godot/imported/calendar.glb-bc6b7236e0faeb5e1bcbfc7929f0795c.scn"
 
 [deps]
 
-source_file="res://assets/models/SPOTLIGHT.glb"
-dest_files=["res://.godot/imported/SPOTLIGHT.glb-b60f7bbb562343e6f18b76ba2096978d.scn"]
+source_file="res://assets/models/calendar.glb"
+dest_files=["res://.godot/imported/calendar.glb-bc6b7236e0faeb5e1bcbfc7929f0795c.scn"]
 
 [params]
 
@@ -39,12 +39,8 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
-"PATH:THE BASE": {
+"PATH:calender": {
 "generate/physics": true
-},
-"PATH:THE LIGHT": {
-"generate/physics": true,
-"mesh_instance/cast_shadow": 0
 }
 }
 }
