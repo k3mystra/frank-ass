@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bd2vee3xx6f21"]
+
+[ext_resource type="FontFile" uid="uid://b55fyfv0wn2q4" path="res://assets/fonts/Creepster-Regular.ttf" id="1_font"]
+
+[node name="Room2Hints" type="Node3D" unique_id=1874014911]
+
+[node name="Equation1" type="Label3D" parent="." unique_id=430992070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+outline_modulate = Color(1, 1, 1, 1)
+text = "T  +  T  =  2"
+font = ExtResource("1_font")
+font_size = 54
+outline_size = 0
+
+[node name="Equation2" type="Label3D" parent="." unique_id=1112843286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+outline_modulate = Color(1, 1, 1, 1)
+text = "T  +  C  =  9"
+font = ExtResource("1_font")
+font_size = 54
+outline_size = 0
+
+[node name="Equation3" type="Label3D" parent="." unique_id=247933455]
+outline_modulate = Color(1, 1, 1, 1)
+text = "C  -  S  =  6"
+font = ExtResource("1_font")
+font_size = 54
+outline_size = 0
+
+[node name="Equation4" type="Label3D" parent="." unique_id=1993228758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+outline_modulate = Color(1, 1, 1, 1)
+text = "S  +  D  =  5"
+font = ExtResource("1_font")
+font_size = 54
+outline_size = 0
+
+[node name="Divider" type="Label3D" parent="." unique_id=1777673979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
+modulate = Color(0.6, 0.6, 0.6, 0.8)
+text = "------------------------"
+outline_size = 4
+
+[node name="Sequence" type="Label3D" parent="." unique_id=1230231963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+outline_modulate = Color(1, 1, 1, 1)
+text = "T    C    S    D"
+font = ExtResource("1_font")
+font_size = 52
+outline_size = 0

@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://6662qx33rjfk" path="res://scenes/props/triangle_door.tscn" id="8_8tad8"]
 [ext_resource type="PackedScene" uid="uid://g51japujnfem" path="res://scenes/props/spotlight.tscn" id="8_x24xt"]
 [ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="9_p1ppg"]
+[ext_resource type="PackedScene" uid="uid://dglvxmdnchfyi" path="res://assets/models/IronBarDoor.glb" id="10_1yraq"]
 [ext_resource type="PackedScene" uid="uid://dn2q88ccg77dw" path="res://scenes/props/eye_door.tscn" id="10_v0fxp"]
 [ext_resource type="PackedScene" uid="uid://3y1cyu7d30cl" path="res://scenes/props/Lantern.tscn" id="11_dau2k"]
+[ext_resource type="Script" uid="uid://c7xclg8nr75mb" path="res://scripts/interactables/iron_bar_door.gd" id="11_tyork"]
 [ext_resource type="PackedScene" uid="uid://b8stardoor01" path="res://scenes/props/star_door.tscn" id="12_ld2r7"]
 [ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="13_nxm05"]
 [ext_resource type="PackedScene" uid="uid://c5safebox001" path="res://scenes/props/safebox.tscn" id="15_tupnw"]
@@ -19,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://drah2xh33pau7" path="res://assets/models/calendar.glb" id="17_wpo1s"]
 [ext_resource type="FontFile" uid="uid://b55fyfv0wn2q4" path="res://assets/fonts/Creepster-Regular.ttf" id="18_ship8"]
 [ext_resource type="PackedScene" uid="uid://cl2q6yurtd7yq" path="res://scenes/props/room3a_hints.tscn" id="19_hints"]
+[ext_resource type="PackedScene" uid="uid://bd2vee3xx6f21" path="res://scenes/props/room2_hints.tscn" id="22_ujn3e"]
 
 [sub_resource type="Environment" id="Environment_gothic"]
 background_mode = 1
@@ -104,9 +107,6 @@ bulb_material_override = SubResource("StandardMaterial3D_dau2k")
 transform = Transform3D(4.942469, 0, 0.7563042, 0, 5, 0, -0.7563042, 0, 4.942469, 8.613, -4.418, -3.984)
 light_energy = 0.3
 
-[node name="Spotlight" parent="LightSource" unique_id=625142491 instance=ExtResource("8_x24xt")]
-transform = Transform3D(0.98007905, -0.0011063814, -0.19860482, 0.07688902, -0.919893, 0.384558, -0.18312067, -0.39216772, -0.9014828, 5.896392, 4.7518215, -1.3123579)
-
 [node name="Spotlight2" parent="LightSource" unique_id=1374342662 instance=ExtResource("8_x24xt")]
 transform = Transform3D(1, 0, 0, 0, -0.30775523, 0.9514656, 0, -0.9514656, -0.30775523, 1.5287904, 6.7054443, 25.677475)
 light_color = Color(1, 0.85882354, 0.47058824, 1)
@@ -120,9 +120,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.921479, 0.40660745, -5.5403
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.126335, 0.36738944, -2.51272)
 light_energy = 0.3
 
+[node name="Room2Terminal" parent="." unique_id=1507736253 instance=ExtResource("16_wpo1s")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.519995, 2.389237, -0.75661206)
+target_code = "1823"
+
+[node name="Room2Spotlight" parent="." unique_id=625142491 instance=ExtResource("8_x24xt")]
+transform = Transform3D(0.98007905, -0.0011063814, -0.1986048, 0.07688902, -0.919893, 0.38455796, -0.18312067, -0.39216772, -0.9014828, 5.896392, 4.7518215, -1.3123579)
+
+[node name="Room2Hints" parent="." unique_id=1874014911 instance=ExtResource("22_ujn3e")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.1547294, 2.6115618, 3.5994139)
+
+[node name="Room2IronBar" parent="." unique_id=1352701495 node_paths=PackedStringArray("target_terminal", "linked_spotlight", "linked_wall_hint") instance=ExtResource("10_1yraq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.839318, 0.021008968, 0.8846332)
+script = ExtResource("11_tyork")
+target_terminal = NodePath("../Room2Terminal")
+linked_spotlight = NodePath("../Room2Spotlight")
+linked_wall_hint = NodePath("../Room2Hints")
+
 [node name="TriangleDoor" parent="." unique_id=1206737672 instance=ExtResource("8_8tad8")]
 transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0.5328404, -0.5473399, 8.038673)
 is_open = true
+
+[node name="Room2WallMarker" type="Marker3D" parent="." unique_id=101384872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.798314, 2.382741, 3.5660737)
 
 [node name="KeyPickup2" parent="." unique_id=1497806863 instance=ExtResource("5_a4rsn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7135812, 1.5678716, -12.261324)
@@ -130,6 +150,7 @@ key_data = ExtResource("9_p1ppg")
 
 [node name="EyeDoor" parent="." unique_id=256378877 instance=ExtResource("10_v0fxp")]
 transform = Transform3D(-4.808253e-07, 0, 11, 0, 11, 0, -11, 0, -4.808253e-07, 4.0095844, -0.5104374, 1.2252502)
+is_open = true
 
 [node name="StarDoor" parent="." unique_id=2071053363 instance=ExtResource("12_ld2r7")]
 transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0.49670482, -1.9202974, 16.445559)
@@ -142,7 +163,7 @@ key_data = ExtResource("13_nxm05")
 transform = Transform3D(0.25529706, 0, 0.54297656, 0, 0.6, 0, -0.54297656, 0, 0.25529706, -0.7135812, 0.77986306, -12.261324)
 target_terminal = NodePath("../Terminal")
 
-[node name="Terminal" parent="." unique_id=1507736253 instance=ExtResource("16_wpo1s")]
+[node name="Terminal" parent="." unique_id=367284015 instance=ExtResource("16_wpo1s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49842, 1.7773714, -13.389234)
 
 [node name="calendar" parent="." unique_id=1043134456 instance=ExtResource("17_wpo1s")]
@@ -211,3 +232,6 @@ horizontal_alignment = 0
 
 [node name="Room3aHints" parent="." unique_id=1604635836 instance=ExtResource("19_hints")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0475726, 2.7054079, 12.030283)
+
+[node name="IronBarDoor2" parent="." unique_id=1923259776 instance=ExtResource("10_1yraq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.1995993, 0.02100885, 22.927107)
