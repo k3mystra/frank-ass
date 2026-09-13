@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bimfbrpx172nq" path="res://assets/models/Key_Star.glb" id="5_qek5x"]
 [ext_resource type="Script" uid="uid://bgstbejymsd37" path="res://scripts/player/view_model.gd" id="5_viewmodel"]
 [ext_resource type="PackedScene" uid="uid://d26gh8yj8tj72" path="res://assets/models/NewBattery.glb" id="6_battery_model"]
-[ext_resource type="PackedScene" uid="uid://djqqsgmiy3hp" path="res://assets/models/HUMAN SHADOW.glb" id="7_0owmy"]
+[ext_resource type="PackedScene" uid="uid://j6fswbr7yejv" path="res://scenes/player/rig_human_shadow.tscn" id="8_qek5x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.4
@@ -55,7 +55,7 @@ script = ExtResource("3_inventory")
 
 [node name="HUD" parent="HUDLayer" unique_id=1188019080 instance=ExtResource("4_hud")]
 
-[node name="HUMAN SHADOW2" parent="." unique_id=276983331 instance=ExtResource("7_0owmy")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 1.4636045)
+[node name="Rig_Human_Shadow" parent="." unique_id=1346887598 instance=ExtResource("8_qek5x")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0.70877576)
 
 [connection signal="prompt_updated" from="Head/Camera3D/InteractionRayCast" to="HUDLayer/HUD" method="update_prompt"]

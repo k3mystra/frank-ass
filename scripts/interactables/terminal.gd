@@ -24,6 +24,11 @@ var is_evaluating: bool = false
 var _active_player: PlayerController = null
 
 func _ready() -> void:
+	if target_code.length() > 0:
+		max_digits = target_code.length()
+
+	if battery_socket == null:
+		battery_socket = find_child("TerminalBatterySocket", true, false) as BatterySocket
 	if battery_socket == null:
 		battery_socket = find_child("BatterySocket", true, false) as BatterySocket
 	if battery_socket != null:
@@ -231,10 +236,8 @@ func is_player_behind(player: Node) -> bool:
 	return cam_forward.dot(term_forward) >= 0.0
 
 func has_power() -> bool:
-	if not is_enabled:
+	if not is_enabled or battery_socket == null:
 		return false
-	if battery_socket == null:
-		return true
 	return battery_socket.installed_battery != null and battery_socket.installed_battery.charge > 0.0
 
 func _on_battery_attached(_battery: Resource) -> void:

@@ -180,7 +180,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0093696, 1.5044568, 1.10860
 key_data = ExtResource("10_key_eye")
 
 [node name="KeyStarPickup" parent="." unique_id=980058555 instance=ExtResource("9_key_pickup")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.95, 1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4906304, 1.5044568, 1.1086003)
 key_data = ExtResource("14_key_star")
 
 [node name="KeyTrianglePickup" parent="." unique_id=1107301280 instance=ExtResource("9_key_pickup")]
@@ -246,5 +246,36 @@ material = SubResource("StandardMaterial3D_table")
 [node name="Safebox" parent="." unique_id=2074367444 node_paths=PackedStringArray("target_terminal") instance=ExtResource("19_safebox")]
 transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, 2, 0.9, 1.2)
 target_terminal = NodePath("../Terminal")
+
+[node name="TerminalPillar2" type="CSGBox3D" parent="." unique_id=1157668721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.45, 1.2)
+use_collision = true
+size = Vector3(0.5, 0.9, 0.5)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="Terminal2" parent="." unique_id=2124261426 instance=ExtResource("17_terminal")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 1.3409718, 1.2)
+target_code = "1818"
+
+[node name="TerminalDebugLabel2" type="Label3D" parent="." unique_id=91014178 node_paths=PackedStringArray("target_terminal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.55, 1.2)
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "Locked (Code: 1818)"
+font_size = 28
+outline_size = 6
+script = ExtResource("18_term_label")
+target_terminal = NodePath("../Terminal2")
+
+[node name="SafeboxTable2" type="CSGBox3D" parent="." unique_id=1662127318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.45, 1.2)
+use_collision = true
+size = Vector3(1, 0.9, 1)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="Safebox2" parent="." unique_id=2074367445 node_paths=PackedStringArray("target_terminal") instance=ExtResource("19_safebox")]
+transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, -2.5, 0.9, 1.2)
+target_terminal = NodePath("../Terminal2")
 
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="play"]

@@ -4,7 +4,14 @@ extends Interactable
 signal safe_opened
 signal safe_closed
 
-@export var target_terminal: CodeTerminal = null
+@export var target_terminal: CodeTerminal = null:
+	set(value):
+		if target_terminal != null and is_instance_valid(target_terminal) and target_terminal.code_correct.is_connected(_on_terminal_code_correct):
+			target_terminal.code_correct.disconnect(_on_terminal_code_correct)
+		target_terminal = value
+		if is_inside_tree() and target_terminal != null:
+			connect_terminal(target_terminal)
+
 @export var is_open: bool = false
 @export var auto_open_on_correct: bool = true
 @export var locked_prompt: String = "Locked Safe"
@@ -41,7 +48,7 @@ func _update_blocker_state() -> void:
 				child.set_deferred("disabled", is_open)
 
 func connect_terminal(terminal: CodeTerminal) -> void:
-	if terminal != null and not terminal.code_correct.is_connected(_on_terminal_code_correct):
+	if terminal != null and is_instance_valid(terminal) and not terminal.code_correct.is_connected(_on_terminal_code_correct):
 		terminal.code_correct.connect(_on_terminal_code_correct)
 
 func _on_terminal_code_correct(_code: String) -> void:
