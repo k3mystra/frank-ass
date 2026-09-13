@@ -39,7 +39,7 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
-"PATH:Room": {
+"PATH:Floor_010": {
 "generate/physics": true,
 "physics/shape_type": 2
 }
