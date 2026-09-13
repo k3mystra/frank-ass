@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://nv4hw6k35ktt"]
 
 [ext_resource type="Script" uid="uid://h50la1tegasr" path="res://scripts/devices/MonitorInteract.gd" id="1_xq62q"]
+[ext_resource type="PackedScene" uid="uid://cewq51ik3piay" path="res://scenes/devices/MonitorView.tscn" id="2_koejb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mon"]
-size = Vector3(1, 1, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_koejb"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Monitor" type="Node3D" unique_id=709485960]
 
@@ -13,3 +16,14 @@ prompt_text = "Check Monitor"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interact" unique_id=594739929]
 shape = SubResource("BoxShape3D_mon")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1041777950]
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 270)
+
+[node name="MonitorView" parent="SubViewport" unique_id=1646200909 instance=ExtResource("2_koejb")]
+
+[node name="RenderTarget" type="Sprite3D" parent="." unique_id=2146105797]
+texture_filter = 0
+texture = SubResource("ViewportTexture_koejb")
