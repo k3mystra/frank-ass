@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c5safebox001"]
+
+[ext_resource type="PackedScene" uid="uid://bvdmlwiokgqyj" path="res://assets/models/safebox.glb" id="1_model"]
+[ext_resource type="Script" uid="uid://daodfocj0oao5" path="res://scripts/interactables/safebox.gd" id="2_script"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(1.85, 2.1, 0.15)
+
+[node name="Safebox" type="Area3D" unique_id=2074367444]
+collision_layer = 2
+script = ExtResource("2_script")
+
+[node name="safebox" parent="." unique_id=2080620350 instance=ExtResource("1_model")]
+
+[node name="DoorBlocker" type="CollisionShape3D" parent="." unique_id=2118350173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 1)
+shape = SubResource("BoxShape3D_door")
+
+[node name="DoorPhysicsBarrier" type="StaticBody3D" parent="." unique_id=1498327110]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPhysicsBarrier" unique_id=1498327111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 1)
+shape = SubResource("BoxShape3D_door")

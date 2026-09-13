@@ -14,6 +14,9 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var is_sprinting: bool = false
 var is_jumping: bool = false
+var is_focused: bool = false
+var _focus_tween: Tween = null
+var _focus_exit_callback: Callable = Callable()
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -21,6 +24,8 @@ func _ready() -> void:
 	platform_floor_layers = 0
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_focused:
+		return
 
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
@@ -34,6 +39,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
+	if is_focused:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		move_and_slide()
+		return
 
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -74,3 +86,48 @@ func _physics_process(delta: float) -> void:
 	# Prevent physics-body wedge pinch or slope normal deflection from launching the player upwards
 	if hit_rigid_body and not is_jumping and velocity.y > 0.0:
 		velocity.y = 0.0
+
+func focus_camera(target_point: Node3D, on_exit: Callable = Callable(), unlock_mouse: bool = false) -> void:
+	if is_focused or target_point == null:
+		return
+	is_focused = true
+	_focus_exit_callback = on_exit
+	if unlock_mouse:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	if _focus_tween != null and _focus_tween.is_valid():
+		_focus_tween.kill()
+
+	camera.top_level = true
+	_focus_tween = create_tween()
+	_focus_tween.set_parallel(true)
+	_focus_tween.tween_property(camera, "global_position", target_point.global_position, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_focus_tween.tween_property(camera, "global_basis", target_point.global_basis, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+func unfocus_camera() -> void:
+	if not is_focused:
+		return
+	is_focused = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	if _focus_tween != null and _focus_tween.is_valid():
+		_focus_tween.kill()
+
+	_focus_tween = create_tween()
+	_focus_tween.set_parallel(true)
+	_focus_tween.tween_property(camera, "global_position", head.global_position, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_focus_tween.tween_property(camera, "global_basis", head.global_basis, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_focus_tween.chain().tween_callback(func():
+		camera.top_level = false
+		camera.transform = Transform3D.IDENTITY
+	)
+
+	if _focus_exit_callback.is_valid():
+		var cb = _focus_exit_callback
+		_focus_exit_callback = Callable()
+		cb.call()
+
+func is_camera_focused() -> bool:
+	return is_focused

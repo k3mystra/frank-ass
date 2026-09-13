@@ -11,19 +11,20 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.4
-height = 1.8
+height = 2.4998047
 
 [node name="Player" type="CharacterBody3D" unique_id=828140591]
 script = ExtResource("1_player")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1824814659]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2499024, 0)
 shape = SubResource("CapsuleShape3D_player")
 
 [node name="Head" type="Node3D" parent="." unique_id=1159032609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1176445944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5388056, 0)
 current = true
 
 [node name="InteractionRayCast" type="RayCast3D" parent="Head/Camera3D" unique_id=1537521634]
@@ -55,6 +56,6 @@ script = ExtResource("3_inventory")
 [node name="HUD" parent="HUDLayer" unique_id=1188019080 instance=ExtResource("4_hud")]
 
 [node name="HUMAN SHADOW2" parent="." unique_id=276983331 instance=ExtResource("7_0owmy")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0.44208193)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 1.4636045)
 
 [connection signal="prompt_updated" from="Head/Camera3D/InteractionRayCast" to="HUDLayer/HUD" method="update_prompt"]

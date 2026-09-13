@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bcn615xfyj0ln"
-path="res://.godot/imported/Human Shadow.glb-d450bce62bdf85965116af4cd09b3eff.scn"
+uid="uid://1yn5vwbjcsy2"
+path="res://.godot/imported/Rig_Human_Shadow.fbx-ac350a4772d1f2ed4e483bb6d919519d.scn"
 
 [deps]
 
-source_file="res://assets/models/Human Shadow.glb"
-dest_files=["res://.godot/imported/Human Shadow.glb-d450bce62bdf85965116af4cd09b3eff.scn"]
+source_file="res://assets/models/Rig_Human_Shadow.fbx"
+dest_files=["res://.godot/imported/Rig_Human_Shadow.fbx-ac350a4772d1f2ed4e483bb6d919519d.scn"]
 
 [params]
 
@@ -30,25 +30,15 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"meshes": {
-"Human Shadow_Cube_001": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "",
-"save_to_file/path": ""
-}
-}
-}
-gltf/naming_version=2
-gltf/embedded_image_handling=1
+_subresources={}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2

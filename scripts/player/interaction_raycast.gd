@@ -15,6 +15,13 @@ func _ready() -> void:
 	collision_mask = 2
 
 func _physics_process(_delta: float) -> void:
+	if player != null and player.has_method("is_camera_focused") and player.is_camera_focused():
+		if current_interactable != null and is_instance_valid(current_interactable):
+			current_interactable.set_highlight(false)
+			current_interactable = null
+		prompt_updated.emit("")
+		return
+
 	if current_interactable != null and not is_instance_valid(current_interactable):
 		current_interactable = null
 		prompt_updated.emit("")
@@ -41,5 +48,8 @@ func _physics_process(_delta: float) -> void:
 		prompt_updated.emit("")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if player != null and player.has_method("is_camera_focused") and player.is_camera_focused():
+		return
+
 	if event.is_action_pressed("interact") and current_interactable != null and is_instance_valid(current_interactable):
 		current_interactable.interact(player)

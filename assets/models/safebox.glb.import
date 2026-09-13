@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bcn615xfyj0ln"
-path="res://.godot/imported/Human Shadow.glb-d450bce62bdf85965116af4cd09b3eff.scn"
+uid="uid://bvdmlwiokgqyj"
+path="res://.godot/imported/safebox.glb-0ffa2ddc45d2ef29fa2607ea9b01cd32.scn"
 
 [deps]
 
-source_file="res://assets/models/Human Shadow.glb"
-dest_files=["res://.godot/imported/Human Shadow.glb-d450bce62bdf85965116af4cd09b3eff.scn"]
+source_file="res://assets/models/safebox.glb"
+dest_files=["res://.godot/imported/safebox.glb-0ffa2ddc45d2ef29fa2607ea9b01cd32.scn"]
 
 [params]
 
@@ -38,15 +38,14 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
-"meshes": {
-"Human Shadow_Cube_001": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "",
-"save_to_file/path": ""
+"nodes": {
+"PATH:box body": {
+"generate/physics": true,
+"physics/layer": 3,
+"physics/shape_type": 2
+},
+"PATH:door": {
+"generate/physics": false
 }
 }
 }

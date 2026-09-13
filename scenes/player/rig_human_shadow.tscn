@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://j6fswbr7yejv"]
+
+[ext_resource type="PackedScene" uid="uid://1yn5vwbjcsy2" path="res://assets/models/Rig_Human_Shadow.fbx" id="1_bgxof"]
+
+[node name="Rig_Human_Shadow" unique_id=1346887598 instance=ExtResource("1_bgxof")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(2052109394) index="0" unique_id=493823003]
+bones/5/rotation = Quaternion(-1.065, 0, 0.17, 0.985)
+bones/6/rotation = Quaternion(-0.255, 0, -0.018, 1)
+bones/9/rotation = Quaternion(0, 0, 0.475, 0.985)

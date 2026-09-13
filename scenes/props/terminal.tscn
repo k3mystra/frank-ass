@@ -1,0 +1,221 @@
+[gd_scene format=3 uid="uid://ykw0cmr82x54"]
+
+[ext_resource type="Script" uid="uid://6gscy6oh5hm1" path="res://scripts/interactables/terminal.gd" id="1_term"]
+[ext_resource type="PackedScene" uid="uid://dtnqir7trjp7h" path="res://assets/models/EyeTerminal.glb" id="2_qj2ns"]
+[ext_resource type="PackedScene" uid="uid://chd4h8r5l20a5" path="res://scenes/props/terminal_battery_socket.tscn" id="3_a2ikc"]
+[ext_resource type="AudioStream" uid="uid://mimt3p3wxyms" path="res://assets/audio/TerminalBeep.wav" id="4_beep"]
+[ext_resource type="AudioStream" uid="uid://ddpotvu57y0sp" path="res://assets/audio/TerminalError.wav" id="5_error"]
+[ext_resource type="AudioStream" uid="uid://dhf4upvnjdqb1" path="res://assets/audio/TerminalCorrectG.wav" id="6_success"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2ikc"]
+size = Vector3(0.22113898, 0.06372285, 0.12801513)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_interact"]
+size = Vector3(0.11024673, 0.25220156, 0.12801513)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btn_clr"]
+albedo_color = Color(0.45, 0.15, 0.15, 1)
+metallic = 0.4
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_btn_clr"]
+material = SubResource("StandardMaterial3D_btn_clr")
+size = Vector3(0.015, 0.02, 0.004)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_btn"]
+size = Vector3(0.016, 0.022, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btn"]
+albedo_color = Color(0.18, 0.2, 0.24, 1)
+metallic = 0.5
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_btn"]
+material = SubResource("StandardMaterial3D_btn")
+size = Vector3(0.015, 0.02, 0.004)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btn_ent"]
+albedo_color = Color(0.15, 0.4, 0.2, 1)
+metallic = 0.4
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_btn_ent"]
+material = SubResource("StandardMaterial3D_btn_ent")
+size = Vector3(0.015, 0.02, 0.004)
+
+[node name="Terminal" type="Area3D" unique_id=1507736253]
+collision_layer = 2
+script = ExtResource("1_term")
+prompt_text = "Use Keypad"
+
+[node name="MainCollision2" type="CollisionShape3D" parent="." unique_id=368924243]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.6545098e-05, -0.0002914369, -0.10301514)
+shape = SubResource("BoxShape3D_a2ikc")
+
+[node name="MainCollision" type="CollisionShape3D" parent="." unique_id=1828501177]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.1109288, -0.18877015, -0.10301514)
+shape = SubResource("BoxShape3D_interact")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=296120463]
+
+[node name="MainCollision2" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1384775897]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.6545098e-05, -0.0002914369, -0.10301514)
+shape = SubResource("BoxShape3D_a2ikc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1807160001]
+
+[node name="MainCollision" type="CollisionShape3D" parent="StaticBody3D" unique_id=1930317854]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.1109288, -0.18877015, -0.10301514)
+shape = SubResource("BoxShape3D_interact")
+
+[node name="CameraFocusPoint" type="Marker3D" parent="." unique_id=710014655]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0444, -0.15019876, 0.5877156)
+
+[node name="DisplayLabel" type="Label3D" parent="." unique_id=1117899884]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.10994974, -0.09761389, 0.002)
+pixel_size = 0.00035
+modulate = Color(0.2, 0.9, 1, 1)
+font_size = 28
+outline_size = 4
+
+[node name="AudioPlayerBeep" type="AudioStreamPlayer3D" parent="." unique_id=766283554]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+stream = ExtResource("4_beep")
+max_distance = 10.0
+max_polyphony = 4
+
+[node name="AudioPlayerError" type="AudioStreamPlayer3D" parent="." unique_id=766283555]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+stream = ExtResource("5_error")
+max_distance = 10.0
+
+[node name="AudioPlayerSuccess" type="AudioStreamPlayer3D" parent="." unique_id=766283556]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+stream = ExtResource("6_success")
+max_distance = 10.0
+
+[node name="EyeTerminal" parent="." unique_id=1702591344 instance=ExtResource("2_qj2ns")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="Buttons" type="Node3D" parent="." unique_id=1675590545]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0.003)
+
+[node name="Label" type="Label3D" parent="Buttons" unique_id=1681578617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024967551, -0.072405666, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "1"
+font_size = 20
+
+[node name="Label2" type="Label3D" parent="Buttons" unique_id=1418837130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.044442177, -0.072405666, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "2"
+font_size = 20
+
+[node name="Label3" type="Label3D" parent="Buttons" unique_id=1588636254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639168, -0.072405666, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "3"
+font_size = 20
+
+[node name="Label4" type="Label3D" parent="Buttons" unique_id=1067219983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024967551, -0.10036923, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "4"
+font_size = 20
+
+[node name="Label5" type="Label3D" parent="Buttons" unique_id=1978253139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.044442177, -0.10036923, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "5"
+font_size = 20
+
+[node name="Label6" type="Label3D" parent="Buttons" unique_id=1285223387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639168, -0.10036923, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "6"
+font_size = 20
+
+[node name="Label7" type="Label3D" parent="Buttons" unique_id=860980836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024967551, -0.1283328, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "7"
+font_size = 20
+
+[node name="Label8" type="Label3D" parent="Buttons" unique_id=803901894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.044442177, -0.1283328, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "8"
+font_size = 20
+
+[node name="Label9" type="Label3D" parent="Buttons" unique_id=1146445117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639168, -0.1283328, 0.009339684)
+visible = false
+pixel_size = 0.0003
+text = "9"
+font_size = 20
+
+[node name="Btn_CLR" type="Area3D" parent="Buttons" unique_id=1999519318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024967551, -0.15629636, 0)
+collision_layer = 0
+metadata/button_id = "CLR"
+
+[node name="Mesh" type="MeshInstance3D" parent="Buttons/Btn_CLR" unique_id=1940684111]
+mesh = SubResource("BoxMesh_btn_clr")
+
+[node name="Col" type="CollisionShape3D" parent="Buttons/Btn_CLR" unique_id=1901310867]
+visible = false
+shape = SubResource("BoxShape3D_btn")
+
+[node name="Label" type="Label3D" parent="Buttons/Btn_CLR" unique_id=1983152546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.003)
+pixel_size = 0.00022
+modulate = Color(1, 0.8, 0.8, 1)
+text = "CLR"
+font_size = 18
+
+[node name="Btn_0" type="Area3D" parent="Buttons" unique_id=1894951744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.044442177, -0.15629636, 0)
+collision_layer = 0
+metadata/button_id = "0"
+
+[node name="Mesh" type="MeshInstance3D" parent="Buttons/Btn_0" unique_id=560221987]
+mesh = SubResource("BoxMesh_btn")
+
+[node name="Col" type="CollisionShape3D" parent="Buttons/Btn_0" unique_id=1599025190]
+shape = SubResource("BoxShape3D_btn")
+
+[node name="Label" type="Label3D" parent="Buttons/Btn_0" unique_id=1235957727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.003)
+pixel_size = 0.0003
+text = "0"
+font_size = 20
+
+[node name="Btn_ENT" type="Area3D" parent="Buttons" unique_id=2111082328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639168, -0.15629636, 0)
+collision_layer = 0
+metadata/button_id = "ENT"
+
+[node name="Mesh" type="MeshInstance3D" parent="Buttons/Btn_ENT" unique_id=1470160676]
+mesh = SubResource("BoxMesh_btn_ent")
+
+[node name="Col" type="CollisionShape3D" parent="Buttons/Btn_ENT" unique_id=83062813]
+shape = SubResource("BoxShape3D_btn")
+
+[node name="Label" type="Label3D" parent="Buttons/Btn_ENT" unique_id=1788596891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.003)
+pixel_size = 0.00022
+modulate = Color(0.8, 1, 0.8, 1)
+text = "ENT"
+font_size = 18
+
+[node name="TerminalBatterySocket" parent="." unique_id=1839201948 instance=ExtResource("3_a2ikc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118592426, -0.4299243, -0.10770519)
