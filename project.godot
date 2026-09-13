@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="frank-ass"
-run/main_scene="res://scenes/core/test_room.tscn"
+run/main_scene="uid://chjev5vf0yput"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -109,6 +109,4 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=3
-lights_and_shadows/positional_shadow/atlas_size=8192
-lights_and_shadows/positional_shadow/atlas_quadrant_2_subdiv=2
-lights_and_shadows/positional_shadow/atlas_quadrant_3_subdiv=2
+lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=1

@@ -3,13 +3,40 @@
 [ext_resource type="PackedScene" uid="uid://5jxecl3adc15" path="res://scenes/core/main_level.tscn" id="1_fun78"]
 [ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="2_fun78"]
 [ext_resource type="PackedScene" uid="uid://b8pickup001" path="res://scenes/props/battery_pickup.tscn" id="4_5pwbx"]
+[ext_resource type="PackedScene" uid="uid://b8keypickup01" path="res://scenes/props/key_pickup.tscn" id="5_a4rsn"]
+[ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="6_1wb4g"]
+[ext_resource type="PackedScene" uid="uid://bmkybmq228v41" path="res://scenes/props/circle_door.tscn" id="6_a4rsn"]
+[ext_resource type="PackedScene" uid="uid://co1hr13vtlrvd" path="res://scenes/props/light_bulb.tscn" id="7_1wb4g"]
+[ext_resource type="PackedScene" uid="uid://6662qx33rjfk" path="res://scenes/props/triangle_door.tscn" id="8_8tad8"]
+[ext_resource type="Resource" path="res://resources/keys/key_triangle.tres" id="9_p1ppg"]
+[ext_resource type="PackedScene" uid="uid://dn2q88ccg77dw" path="res://scenes/props/eye_door.tscn" id="10_v0fxp"]
+[ext_resource type="PackedScene" uid="uid://3y1cyu7d30cl" path="res://scenes/props/Lantern.tscn" id="11_dau2k"]
+[ext_resource type="PackedScene" uid="uid://b8stardoor01" path="res://scenes/props/star_door.tscn" id="12_ld2r7"]
+[ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="13_nxm05"]
 
 [sub_resource type="Environment" id="Environment_gothic"]
 background_mode = 1
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tad8"]
+emission_enabled = true
+emission = Color(0.99999934, 0.7965163, 0.99802595, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1ppg"]
+emission_enabled = true
+emission = Color(0.517647, 0.815686, 0.682353, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0fxp"]
+emission_enabled = true
+emission = Color(0.15803951, 0.79458654, 0.3122045, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dau2k"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node3D" unique_id=560788478]
 
-[node name="MainLevel" parent="." unique_id=976294435 instance=ExtResource("1_fun78")]
+[node name="MainLevel" parent="." unique_id=1476453715 instance=ExtResource("1_fun78")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1470303644]
 environment = SubResource("Environment_gothic")
@@ -20,4 +47,91 @@ environment = SubResource("Environment_gothic")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55277145, 1.721932, -3.032474)
 
 [node name="Player" parent="." unique_id=828140591 instance=ExtResource("2_fun78")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.7090156, 1.4425757)
+transform = Transform3D(0.8732285, 0, 0.487311, 0, 1, 0, -0.487311, 0, 0.8732285, 1.7004495, 0.7090156, 3.183106)
+speed = 3.0
+sprint_speed = 4.0
+
+[node name="KeyPickup" parent="." unique_id=1096488501 instance=ExtResource("5_a4rsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0928892, 1.3289025, -2.4605975)
+key_data = ExtResource("6_1wb4g")
+
+[node name="CircleDoor" parent="." unique_id=1341850555 instance=ExtResource("6_a4rsn")]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -0.021710515, -0.5490726, -6.062038)
+
+[node name="LightSource" type="Node3D" parent="." unique_id=410924976]
+
+[node name="LightBulb2" parent="LightSource" unique_id=2004393742 instance=ExtResource("7_1wb4g")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.888, -4.304, 8.244)
+light_color = Color(0.99999934, 0.7965163, 0.99802595, 1)
+bulb_material_override = SubResource("StandardMaterial3D_8tad8")
+
+[node name="LightBulb" parent="LightSource" unique_id=1753872670 instance=ExtResource("7_1wb4g")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -2.6129358, -4.114237, -6.9725127)
+bulb_material_override = SubResource("StandardMaterial3D_p1ppg")
+
+[node name="LightBulb4" parent="LightSource" unique_id=1204106877 instance=ExtResource("7_1wb4g")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.732, -4.455, -13.445)
+light_color = Color(0.15803951, 0.79458654, 0.3122045, 1)
+light_energy = 0.3
+bulb_material_override = SubResource("StandardMaterial3D_v0fxp")
+
+[node name="Point_011" type="OmniLight3D" parent="LightSource" unique_id=701451372]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.4121633, 0.9355598, 2.5984566)
+light_color = Color(1.1024178, 0.47262836, 0.29988325, 1)
+light_energy = 0.7957747
+shadow_enabled = true
+shadow_blur = 2.0
+omni_range = 8.0
+omni_attenuation = 2.0
+
+[node name="LightBulb3" parent="LightSource" unique_id=1360231517 instance=ExtResource("7_1wb4g")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.729218, -3.9940867, 15.989632)
+
+[node name="LightBulb5" parent="LightSource" unique_id=1219495213 instance=ExtResource("7_1wb4g")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2.0129619, -4.519917, 2.4706945)
+light_color = Color(1, 1, 1, 1)
+light_energy = 0.3
+bulb_material_override = SubResource("StandardMaterial3D_dau2k")
+
+[node name="LightBulb6" parent="LightSource" unique_id=283976903 instance=ExtResource("7_1wb4g")]
+transform = Transform3D(4.942469, 0, 0.7563042, 0, 5, 0, -0.7563042, 0, 4.942469, 8.613, -4.418, -3.984)
+
+[node name="Spot_002" type="SpotLight3D" parent="LightSource" unique_id=1545008366]
+transform = Transform3D(0.99729425, 0.011997124, -0.07252708, 0.051190272, -0.8214186, 0.56802386, -0.05276043, -0.5701996, -0.8198102, 6.7498226, 4.72431, 0.36982113)
+light_energy = 13.0
+shadow_enabled = true
+shadow_blur = 2.0
+spot_range = 4096.0
+spot_attenuation = 2.0
+spot_angle = 17.564154
+
+[node name="Spot_003" type="SpotLight3D" parent="LightSource" unique_id=1871314596]
+transform = Transform3D(0.9998196, 0.018980924, 0.0006967228, 0.0011631278, -0.09779823, 0.99520564, 0.018958058, -0.9950253, -0.09780266, 1.5479094, 5.4662437, 26.705341)
+light_color = Color(1, 0.8594185, 0.47183523, 1)
+light_energy = 59.40458
+shadow_enabled = true
+shadow_blur = 2.0
+spot_range = 4096.0
+spot_attenuation = 2.0
+spot_angle = 23.322533
+spot_angle_attenuation = 0.100135714
+
+[node name="TriangleDoor" parent="." unique_id=1206737672 instance=ExtResource("8_8tad8")]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0.5328404, -0.5473399, 8.038673)
+
+[node name="KeyPickup2" parent="." unique_id=1497806863 instance=ExtResource("5_a4rsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40807855, 1.9699628, 1.8174078)
+key_data = ExtResource("9_p1ppg")
+
+[node name="EyeDoor" parent="." unique_id=256378877 instance=ExtResource("10_v0fxp")]
+transform = Transform3D(-4.808253e-07, 0, 11, 0, 11, 0, -11, 0, -4.808253e-07, 4.0095844, -0.5104374, 1.2252502)
+
+[node name="OmniLight3D" parent="." unique_id=1781085846 instance=ExtResource("11_dau2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95447946, 1.7364908, -4.542285)
+
+[node name="StarDoor" parent="." unique_id=2071053363 instance=ExtResource("12_ld2r7")]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0.49670482, -1.9202974, 16.445559)
+
+[node name="KeyPickup3" parent="." unique_id=459462946 instance=ExtResource("5_a4rsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.550731, 0.9987402, -0.6962464)
+key_data = ExtResource("13_nxm05")

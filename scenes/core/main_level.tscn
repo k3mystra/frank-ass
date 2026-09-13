@@ -1,51 +1,7 @@
 [gd_scene format=3 uid="uid://5jxecl3adc15"]
 
-[ext_resource type="PackedScene" uid="uid://c7c40txblnfw1" path="res://assets/models/MainLevel.blend" id="1_rm73a"]
+[ext_resource type="PackedScene" uid="uid://e6cn7sbuj521" path="res://assets/models/MainLevel.glb" id="1_rm73a"]
 
-[node name="MainLevel" unique_id=976294435 instance=ExtResource("1_rm73a")]
+[node name="Node3D" type="Node3D" unique_id=1476453715]
 
-[node name="Point_007" parent="." index="1" unique_id=333702078]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.5798554, 4.0401807, 11.886402)
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 8.0
-
-[node name="Point_008" parent="." index="2" unique_id=1319935892]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.7656835, 3.9143102, -2.7628198)
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 8.0
-
-[node name="Point_009" parent="." index="3" unique_id=478404948]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.686, 5.638, -9.833)
-shadow_enabled = true
-shadow_blur = 2.0
-distance_fade_enabled = true
-omni_range = 8.0
-omni_attenuation = 3.0
-
-[node name="Point_011" parent="." index="4" unique_id=656726126]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.4121633, 0.9355598, 2.5984566)
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 8.0
-
-[node name="Point_012" parent="." index="5" unique_id=225006871]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.3966478, 3.0601819, 19.45517)
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 8.0
-
-[node name="Point_013" parent="." index="6" unique_id=839851929]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0833459, 3.711624, 5.038921)
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 8.0
-
-[node name="Spot_002" parent="." index="7" unique_id=1440480458]
-shadow_enabled = true
-shadow_blur = 2.0
-
-[node name="Spot_003" parent="." index="8" unique_id=439697579]
-shadow_enabled = true
-shadow_blur = 2.0
+[node name="MainLevel" parent="." unique_id=628309861 instance=ExtResource("1_rm73a")]
