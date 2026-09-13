@@ -1,0 +1,312 @@
+[gd_scene format=3 uid="uid://ni84mg51mmv6"]
+
+[ext_resource type="AudioStream" uid="uid://ragptikklv5a" path="res://assets/audio/RainBGMusic.mp3" id="1_ml7ij"]
+[ext_resource type="PackedScene" uid="uid://b8pickup001" path="res://scenes/props/battery_pickup.tscn" id="2_iug5p"]
+[ext_resource type="Script" uid="uid://b3if5e0sxkcjr" path="res://resources/data/battery_data.gd" id="3_v3mbw"]
+[ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="4_bky3o"]
+[ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="5_8hjjj"]
+[ext_resource type="Script" uid="uid://clfxhrri5d1a8" path="res://scripts/core/socket_debug_label.gd" id="6_ue1dc"]
+[ext_resource type="PackedScene" uid="uid://bn301ipq48hmt" path="res://scenes/props/battery_rack_3slot.tscn" id="7_pky2j"]
+[ext_resource type="Script" uid="uid://c8prw6x7ioawj" path="res://scripts/core/exit_obj.gd" id="10_yd2my"]
+[ext_resource type="PackedScene" uid="uid://chjev5vf0yput" path="res://scenes/core/Main.tscn" id="11_is65j"]
+[ext_resource type="PackedScene" uid="uid://c4u07nmg3nkck" path="res://scenes/devices/HeartPump.tscn" id="17_f3sla"]
+[ext_resource type="PackedScene" uid="uid://dbcm2yfxc8hec" path="res://scenes/frank/frankestein.tscn" id="19_yh33r"]
+
+[sub_resource type="Environment" id="Environment_test"]
+background_mode = 1
+background_color = Color(0.05, 0.06, 0.08, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.3, 0.35, 0.45, 1)
+ambient_light_energy = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.2, 0.22, 0.25, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall"]
+albedo_color = Color(0.3, 0.33, 0.38, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pillar"]
+albedo_color = Color(0.4, 0.5, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_table"]
+albedo_color = Color(0.25, 0.22, 0.18, 1)
+roughness = 0.7
+
+[sub_resource type="Resource" id="Resource_battery_100"]
+script = ExtResource("3_v3mbw")
+id = "battery_test_100"
+
+[sub_resource type="Resource" id="Resource_battery_50"]
+script = ExtResource("3_v3mbw")
+id = "battery_test_50"
+charge = 50.0
+
+[sub_resource type="Resource" id="Resource_battery_0"]
+script = ExtResource("3_v3mbw")
+id = "battery_test_0"
+charge = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovwve"]
+albedo_color = Color(1, 0.13725491, 0.11372549, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ovwve"]
+radius = 0.58046275
+
+[node name="TestRoom" type="Node3D" unique_id=2048359229]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=980852253]
+environment = SubResource("Environment_test")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=994827110]
+stream = ExtResource("1_ml7ij")
+volume_db = 10.0
+autoplay = true
+
+[node name="CeilingLight" type="OmniLight3D" parent="." unique_id=555236333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(0.95, 0.95, 1, 1)
+light_energy = 1.8
+shadow_enabled = true
+shadow_bias = 0.05
+omni_range = 16.0
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1097411775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+use_collision = true
+size = Vector3(16, 0.2, 16)
+material = SubResource("StandardMaterial3D_floor")
+
+[node name="WallNorth" type="CSGBox3D" parent="." unique_id=1214818363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8)
+use_collision = true
+size = Vector3(16, 4, 0.4)
+material = SubResource("StandardMaterial3D_wall")
+
+[node name="WallSouth" type="CSGBox3D" parent="." unique_id=2038431411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
+use_collision = true
+size = Vector3(16, 4, 0.4)
+material = SubResource("StandardMaterial3D_wall")
+
+[node name="WallWest" type="CSGBox3D" parent="." unique_id=2110824853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, 0)
+use_collision = true
+size = Vector3(0.4, 4, 16)
+material = SubResource("StandardMaterial3D_wall")
+
+[node name="WallEast" type="CSGBox3D" parent="." unique_id=1917381243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
+use_collision = true
+size = Vector3(0.4, 4, 16)
+material = SubResource("StandardMaterial3D_wall")
+
+[node name="PillarA" type="CSGBox3D" parent="." unique_id=1052604619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -3)
+use_collision = true
+size = Vector3(1.2, 2, 1.2)
+material = SubResource("StandardMaterial3D_pillar")
+
+[node name="PillarB" type="CSGBox3D" parent="." unique_id=2016313379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 3)
+use_collision = true
+size = Vector3(1.4, 3, 1.4)
+material = SubResource("StandardMaterial3D_pillar")
+
+[node name="Workbench" type="CSGBox3D" parent="." unique_id=225122246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 1.2)
+use_collision = true
+size = Vector3(1.6, 0.9, 0.8)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="Batteries" type="Node3D" parent="." unique_id=1201564863]
+
+[node name="Battery100" parent="Batteries" unique_id=1919278821 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery101" parent="Batteries" unique_id=1344626681 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery102" parent="Batteries" unique_id=241819074 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery103" parent="Batteries" unique_id=1188213751 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery104" parent="Batteries" unique_id=2024248056 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery105" parent="Batteries" unique_id=1196477251 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery106" parent="Batteries" unique_id=1529271297 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery107" parent="Batteries" unique_id=266892888 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery108" parent="Batteries" unique_id=173325834 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery109" parent="Batteries" unique_id=1111198985 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery110" parent="Batteries" unique_id=422963680 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery111" parent="Batteries" unique_id=1236320545 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery112" parent="Batteries" unique_id=887103716 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery113" parent="Batteries" unique_id=1985128004 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery114" parent="Batteries" unique_id=1082824170 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery115" parent="Batteries" unique_id=1661752094 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery116" parent="Batteries" unique_id=66656180 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 2.2949805)
+battery_data = SubResource("Resource_battery_100")
+
+[node name="Battery50" parent="Batteries" unique_id=42665590 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27810058, 0.9, 2.0971234)
+battery_data = SubResource("Resource_battery_50")
+
+[node name="Battery0" parent="Batteries" unique_id=528697346 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery2" parent="Batteries" unique_id=1556386433 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery3" parent="Batteries" unique_id=1771126530 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery4" parent="Batteries" unique_id=1969541063 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery5" parent="Batteries" unique_id=2085104523 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery6" parent="Batteries" unique_id=306143404 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery7" parent="Batteries" unique_id=792408607 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery8" parent="Batteries" unique_id=1923338491 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery9" parent="Batteries" unique_id=1583912738 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19354975, 0.9, 2.1094966)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Battery1" parent="Batteries" unique_id=1108664005 instance=ExtResource("2_iug5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68577594, 0.9, 2.133709)
+battery_data = SubResource("Resource_battery_0")
+
+[node name="Player" parent="." unique_id=1273875163 instance=ExtResource("4_bky3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 3)
+
+[node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("5_8hjjj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4136294, 0.9000001, 1.277951)
+
+[node name="SocketDebugLabel" type="Label3D" parent="." unique_id=1839201953 node_paths=PackedStringArray("target_socket")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20912373, 1.45, 1.3947358)
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "Detached"
+font_size = 28
+outline_size = 6
+script = ExtResource("6_ue1dc")
+target_socket = NodePath("../BatterySocket")
+
+[node name="BatteryRack3Slot" parent="." unique_id=1014713735 instance=ExtResource("7_pky2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3018241, 0.8902862, 1.1986297)
+
+[node name="BatteryRack3Slot2" parent="." unique_id=897119604 instance=ExtResource("7_pky2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8032665, -0.014999986, 1.3403897)
+
+[node name="HeartPump" parent="." unique_id=607287846 instance=ExtResource("17_f3sla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.253784, 0, 0.8487811)
+
+[node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("19_yh33r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5024767, 0, 5.27179)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Frankestein" unique_id=1974801127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.386421, 1.2852049, -7.2497764)
+
+[node name="Tutorial" type="Label3D" parent="Frankestein/CSGSphere3D" unique_id=463235944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9394722, 0)
+pixel_size = 0.01
+billboard = 1
+text = "WASD - Move
+E - Interact"
+
+[node name="TerminalPillar" type="CSGBox3D" parent="." unique_id=1157668720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.45, 1.2)
+use_collision = true
+size = Vector3(0.5, 0.9, 0.5)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="SafeboxTable" type="CSGBox3D" parent="." unique_id=1662127317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.45, 1.2)
+use_collision = true
+size = Vector3(1, 0.9, 1)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="TerminalPillar2" type="CSGBox3D" parent="." unique_id=1157668721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.45, 1.2)
+use_collision = true
+size = Vector3(0.5, 0.9, 0.5)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="SafeboxTable2" type="CSGBox3D" parent="." unique_id=1662127318]
+transform = Transform3D(1, 0, 0, 0, 0.40135622, 0, 0, 0, 1, -2.5, 0.17290097, -0.419374)
+use_collision = true
+size = Vector3(1, 0.9, 1)
+material = SubResource("StandardMaterial3D_table")
+
+[node name="ExitObj" type="StaticBody3D" parent="." unique_id=1920058054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5627909, 1.2408586, -2.0916982)
+script = ExtResource("10_yd2my")
+game_scene = ExtResource("11_is65j")
+prompt_text = "Exit Tutorial"
+
+[node name="Mesh" type="CSGSphere3D" parent="ExitObj" unique_id=773045013]
+material_override = SubResource("StandardMaterial3D_ovwve")
+
+[node name="Collider" type="CollisionShape3D" parent="ExitObj" unique_id=1002845599]
+shape = SubResource("SphereShape3D_ovwve")
+
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="play"]
