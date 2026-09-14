@@ -26,6 +26,10 @@ SceneManager="*uid://b6fbm642sk215"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="output.ogv"
+
 [input]
 
 move_forward={

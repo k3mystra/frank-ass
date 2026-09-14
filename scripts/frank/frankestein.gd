@@ -85,3 +85,7 @@ func _on_machine_power_up(metric_name: String):
 func _on_machine_power_down(metric_name: String):
 	var idx = metric_name_to_idx[metric_name]
 	is_maintained[idx] = false
+
+
+func _on_model_finished_shock() -> void:
+	rotation = Vector3.ZERO

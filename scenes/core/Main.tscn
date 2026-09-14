@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://chjev5vf0yput"]
 
+[ext_resource type="Script" uid="uid://dicokap5peo23" path="res://scripts/core/main.gd" id="1_33iv3"]
 [ext_resource type="PackedScene" uid="uid://5jxecl3adc15" path="res://scenes/core/main_level.tscn" id="1_fun78"]
 [ext_resource type="PackedScene" uid="uid://dbcm2yfxc8hec" path="res://scenes/frank/frankestein.tscn" id="1_kitw3"]
 [ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="2_fun78"]
@@ -19,19 +20,21 @@
 [ext_resource type="PackedScene" uid="uid://b8stardoor01" path="res://scenes/props/star_door.tscn" id="12_ld2r7"]
 [ext_resource type="Resource" path="res://resources/keys/key_star.tres" id="13_nxm05"]
 [ext_resource type="PackedScene" uid="uid://c5safebox001" path="res://scenes/props/safebox.tscn" id="15_tupnw"]
+[ext_resource type="PackedScene" uid="uid://c4u07nmg3nkck" path="res://scenes/devices/HeartPump.tscn" id="15_wpo1s"]
+[ext_resource type="PackedScene" uid="uid://c0wnyqk6iugau" path="res://scenes/devices/NeuralStimulator.tscn" id="16_ship8"]
 [ext_resource type="PackedScene" uid="uid://ykw0cmr82x54" path="res://scenes/props/terminal.tscn" id="16_wpo1s"]
+[ext_resource type="PackedScene" uid="uid://m72d7tf65rli" path="res://scenes/devices/Oxygenator.tscn" id="17_d7485"]
 [ext_resource type="PackedScene" uid="uid://drah2xh33pau7" path="res://assets/models/calendar.glb" id="17_wpo1s"]
 [ext_resource type="FontFile" uid="uid://b55fyfv0wn2q4" path="res://assets/fonts/Creepster-Regular.ttf" id="18_ship8"]
 [ext_resource type="PackedScene" uid="uid://cl2q6yurtd7yq" path="res://scenes/props/room3a_hints.tscn" id="19_hints"]
 [ext_resource type="PackedScene" uid="uid://bd2vee3xx6f21" path="res://scenes/props/room2_hints.tscn" id="22_ujn3e"]
 [ext_resource type="PackedScene" uid="uid://b5ik0w1aujqt0" path="res://scenes/props/power_level.tscn" id="23_l85qj"]
-[ext_resource type="PackedScene" uid="uid://c4u07nmg3nkck" path="res://scenes/devices/HeartPump.tscn" id="15_wpo1s"]
-[ext_resource type="PackedScene" uid="uid://c0wnyqk6iugau" path="res://scenes/devices/NeuralStimulator.tscn" id="16_ship8"]
-[ext_resource type="PackedScene" uid="uid://m72d7tf65rli" path="res://scenes/devices/Oxygenator.tscn" id="17_d7485"]
 
 [sub_resource type="Environment" id="Environment_gothic"]
 background_mode = 1
+ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tad8"]
 emission_enabled = true
@@ -49,10 +52,44 @@ emission = Color(0.5176471, 0.8156863, 0.68235296, 1)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
-[node name="Main" type="Node3D" unique_id=560788478]
+[sub_resource type="Animation" id="Animation_cwny7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:ambient_light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
 
-[node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("1_kitw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.177806, 1.224117, 0)
+[sub_resource type="Animation" id="Animation_33iv3"]
+resource_name = "lightning"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:ambient_light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 1),
+"transitions": PackedFloat32Array(1, 1, 3.4822013),
+"update": 0,
+"values": [0.01, 5.0, 0.01]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cwny7"]
+_data = {
+&"RESET": SubResource("Animation_cwny7"),
+&"lightning": SubResource("Animation_33iv3")
+}
+
+[node name="Main" type="Node3D" unique_id=560788478]
+script = ExtResource("1_33iv3")
 
 [node name="MainLevel" parent="." unique_id=976294435 instance=ExtResource("1_fun78")]
 
@@ -249,6 +286,7 @@ drop_duration = 8.0
 
 [node name="PowerLevel" parent="." unique_id=15015721 instance=ExtResource("23_l85qj")]
 transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, 1.4851351, 1.0460845, 27.63001)
+
 [node name="HeartPump" parent="." unique_id=607287846 instance=ExtResource("15_wpo1s")]
 transform = Transform3D(0.9988676, 0, 0.047577053, 0, 1, 0, -0.047577053, 0, 0.9988676, -0.66198194, -0.113444984, -1.4989989)
 
@@ -260,3 +298,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67586833, 1.1984733, 2.679
 
 [node name="Monitor" parent="." unique_id=709485960 instance=ExtResource("4_kitw3")]
 transform = Transform3D(0.20770672, -0.18037589, 0.9614169, -9.313226e-10, 0.9828518, 0.18439737, -0.97819114, -0.038300574, 0.20414491, -2.4900925, 1.5591102, -3.4301293)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1314016895]
+libraries/ = SubResource("AnimationLibrary_cwny7")
+
+[node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("1_kitw3")]
+transform = Transform3D(-0.14672069, -0.52068776, 0.8410454, 0.054669715, 0.8446787, 0.5324743, -0.9876661, 0.124104716, -0.095466, -2.5314035, 0.4908904, -0.22396156)
