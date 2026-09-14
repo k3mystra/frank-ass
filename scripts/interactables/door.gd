@@ -14,6 +14,8 @@ const KeyPickupClass = preload("res://scripts/interactables/key_pickup.gd")
 @export var is_open: bool = false
 
 @onready var hinge_pivot: Node3D = find_child("HingePivot", true, false)
+@onready var audio_door_open: AudioStreamPlayer3D = find_child("AudioDoorOpen", true, false) as AudioStreamPlayer3D
+@onready var audio_door_close: AudioStreamPlayer3D = find_child("AudioDoorClose", true, false) as AudioStreamPlayer3D
 
 var slotted_keys: Dictionary[StringName, KeyData] = {}
 var slotted_key_sides: Dictionary[StringName, bool] = {}
@@ -168,6 +170,8 @@ func open_door(from_front: bool = true) -> void:
 		return
 	is_open = true
 	door_opened.emit()
+	if audio_door_open != null:
+		audio_door_open.play(0.0)
 	var angle_deg: float = open_angle_deg if from_front else -open_angle_deg
 	_animate_hinge(deg_to_rad(angle_deg))
 
@@ -176,6 +180,8 @@ func close_door() -> void:
 		return
 	is_open = false
 	door_closed.emit()
+	if audio_door_close != null:
+		audio_door_close.play(0.0)
 	_animate_hinge(0.0)
 
 func _animate_hinge(target_rot_y: float) -> void:

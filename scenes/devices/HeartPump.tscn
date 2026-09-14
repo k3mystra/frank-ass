@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="2_cvbmq"]
 [ext_resource type="PackedScene" uid="uid://btlgctyv7cqby" path="res://scenes/devices/Device.tscn" id="3_it48x"]
 [ext_resource type="Resource" uid="uid://crhqekfkdpeiy" path="res://resources/frank/heart_function.tres" id="4_bwxk4"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/heartbeat.wav" id="5_heartbeat"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/HeartbeatMonitor.mp3" id="6_monitorbeep"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pump"]
 size = Vector3(2.3010254, 2.3690338, 1.2190933)
@@ -25,6 +27,17 @@ shape = SubResource("BoxShape3D_pump")
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_cvbmq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014441967, 1.1245043, -0.92424875)
 
-[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_it48x")]
+[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket", "audio_players") instance=ExtResource("3_it48x")]
 associated_metric = ExtResource("4_bwxk4")
 associated_socket = NodePath("../BatterySocket")
+audio_players = [NodePath("../AudioHeartbeat"), NodePath("../AudioMonitorBeep")]
+
+[node name="AudioHeartbeat" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_heartbeat")
+volume_db = -2.0
+max_distance = 18.0
+
+[node name="AudioMonitorBeep" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_monitorbeep")
+volume_db = -4.0
+max_distance = 18.0
