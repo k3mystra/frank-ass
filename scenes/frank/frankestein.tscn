@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://crhqekfkdpeiy" path="res://resources/frank/heart_function.tres" id="3_mtu8s"]
 [ext_resource type="Resource" uid="uid://qbddkptq5vbs" path="res://resources/frank/neural_activity.tres" id="4_t2uua"]
 [ext_resource type="Resource" uid="uid://can4it0jl1d3t" path="res://resources/frank/oxygen_saturation.tres" id="5_eiism"]
+[ext_resource type="PackedScene" uid="uid://bxyfj7fmuqreq" path="res://scenes/frank/frank_model.tscn" id="6_oa846"]
 
 [node name="Frankestein" type="Node3D" unique_id=751629555]
 script = ExtResource("1_4iptu")
@@ -13,4 +14,8 @@ metrics = Array[ExtResource("2_hqqss")]([ExtResource("3_mtu8s"), ExtResource("4_
 [node name="Tick" type="Timer" parent="." unique_id=891278132]
 autostart = true
 
+[node name="Model" parent="." unique_id=1681683486 instance=ExtResource("6_oa846")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]
+[connection signal="finished_shock" from="Model" to="." method="_on_model_finished_shock"]

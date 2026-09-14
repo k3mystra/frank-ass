@@ -51,6 +51,17 @@ script = ExtResource("1_78ebe")
 game_scene = ExtResource("2_3qs7y")
 stop_chance = 0.3
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1182004652]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("6_4tit8")
+autoplay = true
+loop = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1767531987]
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer" unique_id=1182004652]

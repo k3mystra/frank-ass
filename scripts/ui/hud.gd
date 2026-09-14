@@ -36,7 +36,7 @@ var active_slot: int = 0
 func _ready() -> void:
 	EventBus.active_slot_changed.connect(_on_active_slot_changed)
 	EventBus.inventory_updated.connect(_on_inventory_updated)
-	EventBus.game_ended.connect(_on_game_ended)
+	# EventBus.game_ended.connect(_on_game_ended)
 
 	if game_over_banner != null:
 		game_over_banner.visible = false
@@ -91,17 +91,17 @@ func _update_slot_highlights() -> void:
 		else:
 			panel.modulate = Color(0.6, 0.6, 0.6)
 
-func _on_game_ended(success: bool, reason: String) -> void:
-	if audio_game_over != null:
-		audio_game_over.play(0.0)
-
-	if game_over_banner == null:
-		return
-
-	game_over_banner.visible = true
-	if success:
-		game_over_title.text = "SURVIVAL ACHIEVED"
-		game_over_subtext.text = reason + "\nLightning strikes... The creature awakens."
-	else:
-		game_over_title.text = "EXPERIMENT FAILED"
-		game_over_subtext.text = reason + "\nDarkness falls... Then a thunderous spark."
+# func _on_game_ended(success: bool, reason: String) -> void:
+# 	if audio_game_over != null:
+# 		audio_game_over.play(0.0)
+#
+# 	if game_over_banner == null:
+# 		return
+#
+# 	game_over_banner.visible = true
+# 	if success:
+# 		game_over_title.text = "SURVIVAL ACHIEVED"
+# 		game_over_subtext.text = reason + "\nLightning strikes... The creature awakens."
+# 	else:
+# 		game_over_title.text = "EXPERIMENT FAILED"
+# 		game_over_subtext.text = reason + "\nDarkness falls... Then a thunderous spark."
