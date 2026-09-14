@@ -56,7 +56,6 @@ script = ExtResource("24_main")
 
 [node name="AudioCriticalAlarm" type="AudioStreamPlayer" parent="." unique_id=994827113]
 stream = ExtResource("25_alarm")
-volume_db = 0.0
 
 [node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("1_kitw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.177806, 1.224117, 0)
@@ -69,7 +68,7 @@ environment = SubResource("Environment_gothic")
 [node name="Interactables" type="Node3D" parent="." unique_id=1484870745]
 
 [node name="BatteryPickup" parent="." unique_id=1344626681 instance=ExtResource("4_5pwbx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55277145, 1.721932, -3.032474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2771368, 1.2653064, -3.3519428)
 
 [node name="Player" parent="." unique_id=828140591 instance=ExtResource("2_fun78")]
 transform = Transform3D(0.8732285, 0, 0.487311, 0, 1, 0, -0.487311, 0, 0.8732285, 1.7004495, 0.7090156, 3.183106)
@@ -78,7 +77,7 @@ sprint_speed = 4.0
 crouch_head_y = 0.3
 
 [node name="KeyPickup" parent="." unique_id=1096488501 instance=ExtResource("5_a4rsn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0928892, 1.3289025, -2.4605975)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37076402, 1.3289025, 3.6019785)
 key_data = ExtResource("6_1wb4g")
 
 [node name="CircleDoor" parent="." unique_id=1341850555 instance=ExtResource("6_a4rsn")]
@@ -266,3 +265,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67586833, 1.1984733, 2.679
 
 [node name="Monitor" parent="." unique_id=709485960 instance=ExtResource("4_kitw3")]
 transform = Transform3D(0.20770672, -0.18037589, 0.9614169, -9.313226e-10, 0.9828518, 0.18439737, -0.97819114, -0.038300574, 0.20414491, -2.4900925, 1.5591102, -3.4301293)
+
+[node name="BatteryPickup2" parent="." unique_id=1737298707 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 0.47679058, 0.87901694, 0, -0.87901694, 0.47679058, 3.5207553, 0.14278784, -10.5261135)
+
+[node name="BatteryPickup4" parent="." unique_id=396143154 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09233749, 1.0037766, 9.232285)
+
+[node name="BatteryPickup5" parent="." unique_id=1356499442 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4945912, 1.1248574, 9.327578)
+
+[node name="BatteryPickup6" parent="." unique_id=1297968348 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 0.5885334, -0.80847293, 0, 0.80847293, 0.5885334, 13.040647, 0.19169992, 0.96622366)
+
+[node name="BatteryPickup7" parent="." unique_id=1625096213 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.128005, -0.012130417, -3.841229)
+
+[node name="BatteryPickup8" parent="." unique_id=1047397916 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0148292, 0.02491621, 3.5082417)
+
+[node name="BatteryPickup9" parent="." unique_id=1513873598 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5758288, 3.6041424, -2.7617612)
+
+[node name="BatteryPickup10" parent="." unique_id=832296710 instance=ExtResource("4_5pwbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58369267, -0.012130387, 14.935861)
