@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://h50la1tegasr" path="res://scripts/devices/MonitorInteract.gd" id="1_xq62q"]
 [ext_resource type="PackedScene" uid="uid://cewq51ik3piay" path="res://scenes/devices/MonitorView.tscn" id="2_koejb"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/Monitor Screen.mp3" id="3_screen_hum"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mon"]
 
@@ -29,3 +30,9 @@ size = Vector2i(480, 270)
 pixel_size = 0.004
 texture_filter = 0
 texture = SubResource("ViewportTexture_koejb")
+
+[node name="AudioScreenHum" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_screen_hum")
+volume_db = -6.0
+max_distance = 12.0
+autoplay = true

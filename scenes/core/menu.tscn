@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://dpssm7ide38vy"]
 
-[ext_resource type="Script" uid="uid://0vut6376j4dh" path="res://scripts/core/menu.gd" id="1_78ebe"]
+[ext_resource type="Script" path="res://scripts/core/menu.gd" id="1_78ebe"]
 [ext_resource type="Texture2D" uid="uid://53e10p6monup" path="res://assets/images/title.png" id="1_k8016"]
 [ext_resource type="PackedScene" uid="uid://ni84mg51mmv6" path="res://scenes/core/tutorial.tscn" id="2_3qs7y"]
 [ext_resource type="Theme" uid="uid://cp6y3j32f2mku" path="res://resources/theme/ui_theme.tres" id="2_cbqj3"]
 [ext_resource type="Texture2D" uid="uid://ddkkkylvulgj0" path="res://assets/images/the_game.png" id="5_wwfr1"]
 [ext_resource type="VideoStream" uid="uid://48ytuacydf3x" path="res://assets/video/test.ogv" id="6_4tit8"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/BackgroundMusic.mp3" id="7_bg_music"]
 
 [sub_resource type="Animation" id="Animation_4tit8"]
 length = 0.001
@@ -51,6 +52,17 @@ game_scene = ExtResource("2_3qs7y")
 stop_chance = 0.3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1767531987]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer" unique_id=1182004652]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("6_4tit8")
+autoplay = true
+loop = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=733513774]
 anchors_preset = 15
@@ -108,17 +120,6 @@ layout_mode = 2
 theme = ExtResource("2_cbqj3")
 text = "Exit"
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer" unique_id=1182004652]
-z_index = -1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stream = ExtResource("6_4tit8")
-autoplay = true
-loop = true
-
 [node name="StopTimer" type="Timer" parent="." unique_id=2006139672]
 wait_time = 2.0
 one_shot = true
@@ -132,7 +133,13 @@ autoplay = &"rotate"
 wait_time = 0.5
 autostart = true
 
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=994827110]
+stream = ExtResource("7_bg_music")
+volume_db = -3.0
+autoplay = true
+
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]
 [connection signal="timeout" from="StopTimer" to="." method="_on_stop_timer_timeout"]
 [connection signal="timeout" from="CycleTimer" to="." method="_on_cycle_timer_timeout"]
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="play"]

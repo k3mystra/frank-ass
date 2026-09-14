@@ -12,6 +12,7 @@ signal ending_triggered
 @export var is_activated: bool = false
 
 @onready var anim_player: AnimationPlayer = find_child("AnimationPlayer", true, false)
+@onready var audio_buzz: AudioStreamPlayer3D = find_child("AudioElectricBuzz", true, false)
 
 var _tween: Tween = null
 
@@ -37,6 +38,9 @@ func activate_switch() -> void:
 		return
 	is_activated = true
 	lever_activated.emit()
+
+	if audio_buzz != null:
+		audio_buzz.play(0.0)
 
 	if anim_player != null:
 		anim_player.play(animation_name)

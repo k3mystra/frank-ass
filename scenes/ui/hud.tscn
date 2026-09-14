@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://hudview001"]
 
 [ext_resource type="Script" uid="uid://hp4vplk3d72q" path="res://scripts/ui/hud.gd" id="1_hud"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/Menu Selection Click.wav" id="2_click"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/game_over_iv.mp3" id="3_gameover"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
 bg_color = Color(0.12, 0.14, 0.18, 0.8)
@@ -211,3 +213,11 @@ theme_override_font_sizes/font_size = 18
 text = "The storm rages..."
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="AudioSlotClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_click")
+volume_db = -6.0
+
+[node name="AudioGameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gameover")
+volume_db = 0.0

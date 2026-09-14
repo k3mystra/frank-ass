@@ -28,6 +28,8 @@ const BATTERY_ICON: Texture2D = preload("res://assets/images/Battery.png")
 @onready var game_over_banner: Panel = $GameOverBanner
 @onready var game_over_title: Label = $GameOverBanner/TitleLabel
 @onready var game_over_subtext: Label = $GameOverBanner/SubtextLabel
+@onready var audio_slot_click: AudioStreamPlayer = get_node_or_null("AudioSlotClick")
+@onready var audio_game_over: AudioStreamPlayer = get_node_or_null("AudioGameOver")
 
 var active_slot: int = 0
 
@@ -55,6 +57,8 @@ func update_prompt(text: String) -> void:
 		reticle_dot.color = Color(0.2, 0.9, 1.0, 1.0)
 
 func _on_active_slot_changed(slot_index: int, _item: Resource) -> void:
+	if active_slot != slot_index and audio_slot_click != null:
+		audio_slot_click.play(0.0)
 	active_slot = slot_index
 	_update_slot_highlights()
 
@@ -88,6 +92,9 @@ func _update_slot_highlights() -> void:
 			panel.modulate = Color(0.6, 0.6, 0.6)
 
 func _on_game_ended(success: bool, reason: String) -> void:
+	if audio_game_over != null:
+		audio_game_over.play(0.0)
+
 	if game_over_banner == null:
 		return
 
