@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://chjev5vf0yput"]
 
-[ext_resource type="Script" uid="uid://dicokap5peo23" path="res://scripts/core/main.gd" id="1_33iv3"]
 [ext_resource type="PackedScene" uid="uid://5jxecl3adc15" path="res://scenes/core/main_level.tscn" id="1_fun78"]
 [ext_resource type="PackedScene" uid="uid://dbcm2yfxc8hec" path="res://scenes/frank/frankestein.tscn" id="1_kitw3"]
 [ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="2_fun78"]
@@ -55,7 +54,7 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_cwny7"]
-length = 0.001
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -63,10 +62,10 @@ tracks/0/path = NodePath("WorldEnvironment:environment:ambient_light_energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.01]
+"values": [0.01, 5.0, 0.01]
 }
 
 [sub_resource type="Animation" id="Animation_33iv3"]
@@ -93,14 +92,11 @@ _data = {
 [node name="Main" type="Node3D" unique_id=560788478]
 script = ExtResource("24_main")
 
+[node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("1_kitw3")]
+transform = Transform3D(-0.14672069, -0.52068776, 0.8410454, 0.054669715, 0.8446787, 0.5324743, -0.9876661, 0.124104716, -0.095466, -2.5314035, 0.4908904, -0.22396156)
+
 [node name="AudioCriticalAlarm" type="AudioStreamPlayer" parent="." unique_id=994827113]
 stream = ExtResource("25_alarm")
-
-[node name="Main" type="Node3D" unique_id=560788478]
-script = ExtResource("1_33iv3")
-
-[node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("1_kitw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.177806, 1.224117, 0)
 
 [node name="MainLevel" parent="." unique_id=976294435 instance=ExtResource("1_fun78")]
 
@@ -113,7 +109,7 @@ environment = SubResource("Environment_gothic")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2771368, 1.2653064, -3.3519428)
 
 [node name="Player" parent="." unique_id=828140591 instance=ExtResource("2_fun78")]
-transform = Transform3D(-0.8136388, 0, 0.58137065, 0, 1, 0, -0.58137065, 0, -0.8136388, 2.669104, 0.16925299, -4.772745)
+transform = Transform3D(-0.77826506, -2.5550468e-09, 0.62793607, -2.0354343e-09, 1, 1.5462394e-09, -0.62793607, -7.473857e-11, -0.77826506, 2.669104, 0.16925299, 24.488182)
 speed = 3.0
 sprint_speed = 4.0
 crouch_head_y = 0.3
@@ -341,6 +337,3 @@ outline_size = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1314016895]
 libraries/ = SubResource("AnimationLibrary_cwny7")
-
-[node name="Frankestein" parent="." unique_id=751629555 instance=ExtResource("1_kitw3")]
-transform = Transform3D(-0.14672069, -0.52068776, 0.8410454, 0.054669715, 0.8446787, 0.5324743, -0.9876661, 0.124104716, -0.095466, -2.5314035, 0.4908904, -0.22396156)
