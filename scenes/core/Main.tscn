@@ -54,12 +54,6 @@ emission = Color(0.5176471, 0.8156863, 0.68235296, 1)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
-[node name="Main" type="Node3D" unique_id=560788478]
-script = ExtResource("24_main")
-
-[node name="AudioCriticalAlarm" type="AudioStreamPlayer" parent="." unique_id=994827113]
-stream = ExtResource("25_alarm")
-
 [sub_resource type="Animation" id="Animation_cwny7"]
 length = 0.001
 tracks/0/type = "value"
@@ -95,6 +89,12 @@ _data = {
 &"RESET": SubResource("Animation_cwny7"),
 &"lightning": SubResource("Animation_33iv3")
 }
+
+[node name="Main" type="Node3D" unique_id=560788478]
+script = ExtResource("24_main")
+
+[node name="AudioCriticalAlarm" type="AudioStreamPlayer" parent="." unique_id=994827113]
+stream = ExtResource("25_alarm")
 
 [node name="Main" type="Node3D" unique_id=560788478]
 script = ExtResource("1_33iv3")
