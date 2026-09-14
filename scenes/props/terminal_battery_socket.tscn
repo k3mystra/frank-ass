@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dxx0j3758i335" path="res://scripts/interactables/battery_socket.gd" id="1_k4qqq"]
 [ext_resource type="PackedScene" uid="uid://d26gh8yj8tj72" path="res://assets/models/NewBattery.glb" id="2_j3t0f"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/Plug-in.wav" id="3_plugin"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/Plug-out.wav" id="4_plugout"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_socket"]
 height = 0.03970459
@@ -35,3 +37,11 @@ disabled = true
 [node name="BatteryModel" parent="." unique_id=1839201951 instance=ExtResource("2_j3t0f")]
 transform = Transform3D(2.385, 0, 0, 0, 2.385, 0, 0, 0, 2.385, 0, 0.02, 0)
 visible = false
+
+[node name="AudioPlugIn" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_plugin")
+max_distance = 15.0
+
+[node name="AudioPlugOut" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_plugout")
+max_distance = 15.0

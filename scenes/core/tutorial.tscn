@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://ni84mg51mmv6"]
 
-[ext_resource type="AudioStream" uid="uid://ragptikklv5a" path="res://assets/audio/RainBGMusic.mp3" id="1_ml7ij"]
 [ext_resource type="PackedScene" uid="uid://b8pickup001" path="res://scenes/props/battery_pickup.tscn" id="2_iug5p"]
 [ext_resource type="Script" uid="uid://b3if5e0sxkcjr" path="res://resources/data/battery_data.gd" id="3_v3mbw"]
 [ext_resource type="PackedScene" uid="uid://cm20fj107blsa" path="res://scenes/player/player.tscn" id="4_bky3o"]
@@ -59,10 +58,6 @@ radius = 0.58046275
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=980852253]
 environment = SubResource("Environment_test")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=994827110]
-stream = ExtResource("1_ml7ij")
-volume_db = 10.0
-autoplay = true
 
 [node name="CeilingLight" type="OmniLight3D" parent="." unique_id=555236333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -308,5 +303,3 @@ material_override = SubResource("StandardMaterial3D_ovwve")
 
 [node name="Collider" type="CollisionShape3D" parent="ExitObj" unique_id=1002845599]
 shape = SubResource("SphereShape3D_ovwve")
-
-[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="play"]

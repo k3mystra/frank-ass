@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c60dl3qose7vh"
+path="res://.godot/imported/neural static buzz.mp3-d57c74e6c0b10758ce5e1dc772ddecc9.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/MMUGameJamAudio/neural static buzz.mp3"
+dest_files=["res://.godot/imported/neural static buzz.mp3-d57c74e6c0b10758ce5e1dc772ddecc9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

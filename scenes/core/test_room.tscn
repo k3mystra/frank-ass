@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://ykw0cmr82x54" path="res://scenes/props/terminal.tscn" id="17_terminal"]
 [ext_resource type="Script" uid="uid://cjktbhr2l23d" path="res://scripts/core/terminal_debug_label.gd" id="18_term_label"]
 [ext_resource type="PackedScene" uid="uid://c5safebox001" path="res://scenes/props/safebox.tscn" id="19_safebox"]
-[ext_resource type="AudioStream" uid="uid://ragptikklv5a" path="res://assets/audio/RainBGMusic.mp3" id="20_rain_bg"]
 [ext_resource type="PackedScene" uid="uid://nv4hw6k35ktt" path="res://scenes/devices/Monitor.tscn" id="21_uier1"]
 
 [sub_resource type="Environment" id="Environment_test"]
@@ -67,10 +66,6 @@ charge = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=980852253]
 environment = SubResource("Environment_test")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=994827110]
-stream = ExtResource("20_rain_bg")
-volume_db = 10.0
-autoplay = true
 
 [node name="CeilingLight" type="OmniLight3D" parent="." unique_id=555236333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -282,6 +277,5 @@ material = SubResource("StandardMaterial3D_table")
 transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, -2.5, 0.9, 1.2)
 target_terminal = NodePath("../Terminal2")
 
-[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="play"]
 [node name="Monitor" parent="." unique_id=709485960 instance=ExtResource("21_uier1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7210317, -2.2654061)

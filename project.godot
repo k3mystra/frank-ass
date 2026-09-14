@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="frank-ass"
-run/main_scene="uid://chjev5vf0yput"
+run/main_scene="uid://dpssm7ide38vy"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

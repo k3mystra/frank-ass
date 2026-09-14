@@ -5,6 +5,8 @@
 [ext_resource type="Resource" path="res://resources/keys/key_circle.tres" id="3_key_circle"]
 [ext_resource type="PackedScene" path="res://assets/models/Door_Circle.glb" id="4_mesh"]
 [ext_resource type="Script" path="res://scripts/interactables/door_area.gd" id="5_door_area"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/door-01.wav" id="6_dooropen"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/door-06.wav" id="7_doorclose"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_leaf"]
 size = Vector3(0.196, 0.33, 0.016)
@@ -43,4 +45,12 @@ transform = Transform3D(-0.25, 0, -2.1855694e-08, 0, 0.25, 0, 2.1855694e-08, 0, 
 
 [node name="KeyMountBack" type="Node3D" parent="HingePivot"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.183827, 0.16459, -0.013)
+
+[node name="AudioDoorOpen" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_dooropen")
+max_distance = 20.0
+
+[node name="AudioDoorClose" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_doorclose")
+max_distance = 20.0
 

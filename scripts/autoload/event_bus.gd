@@ -16,8 +16,8 @@ signal critical_resolved(metric_name: StringName)
 signal critical_expired(metric_name: StringName)
 
 # On Alarm active
-signal alarm_started(metric_name: StringName)
-signal alarm_stopped(metric_name: StringName)
+signal alarm_started
+signal alarm_stopped
 
 ## Emitted when the auxiliary power knife switch in Room 3B is pulled 
 signal power_switch_activated

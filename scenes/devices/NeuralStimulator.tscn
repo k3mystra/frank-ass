@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="2_3juxm"]
 [ext_resource type="PackedScene" uid="uid://btlgctyv7cqby" path="res://scenes/devices/Device.tscn" id="3_ukb35"]
 [ext_resource type="Resource" uid="uid://qbddkptq5vbs" path="res://resources/frank/neural_activity.tres" id="4_wdguo"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/neural static buzz.mp3" id="5_neuralbuzz"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stim"]
 size = Vector3(0.55249023, 0.7687988, 0.5891113)
@@ -25,6 +26,12 @@ shape = SubResource("BoxShape3D_stim")
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_3juxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013305664, 0, 0.41299576)
 
-[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_ukb35")]
+[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket", "audio_players") instance=ExtResource("3_ukb35")]
 associated_metric = ExtResource("4_wdguo")
 associated_socket = NodePath("../BatterySocket")
+audio_players = [NodePath("../AudioNeuralBuzz")]
+
+[node name="AudioNeuralBuzz" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_neuralbuzz")
+volume_db = -4.0
+max_distance = 18.0
