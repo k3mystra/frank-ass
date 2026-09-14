@@ -24,6 +24,11 @@ var _focus_exit_callback: Callable = Callable()
 var _standing_head_y: float = 1.65
 var _initial_camera_transform: Transform3D = Transform3D.IDENTITY
 
+@onready var footstep_audio_1: AudioStreamPlayer3D = find_child("AudioFootstep1", true, false)
+@onready var footstep_audio_2: AudioStreamPlayer3D = find_child("AudioFootstep2", true, false)
+var _step_timer: float = 0.0
+var _footstep_toggle: bool = false
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
@@ -102,6 +107,23 @@ func _physics_process(delta: float) -> void:
 	# Prevent physics-body wedge pinch or slope normal deflection from launching the player upwards
 	if hit_rigid_body and not is_jumping and velocity.y > 0.0:
 		velocity.y = 0.0
+
+	var horiz_vel: float = Vector2(velocity.x, velocity.z).length()
+	if is_on_floor() and horiz_vel > 0.5 and not is_focused:
+		var speed_mult: float = 1.4 if is_sprinting else (0.75 if is_crouching else 1.0)
+		_step_timer += delta * speed_mult
+		if _step_timer >= 0.4:
+			_step_timer = 0.0
+			_play_footstep()
+	else:
+		_step_timer = 0.0
+
+func _play_footstep() -> void:
+	var p: AudioStreamPlayer3D = footstep_audio_2 if _footstep_toggle else footstep_audio_1
+	_footstep_toggle = not _footstep_toggle
+	if p != null:
+		p.pitch_scale = randf_range(0.92, 1.08)
+		p.play(0.0)
 
 func focus_camera(target_point: Node3D, on_exit: Callable = Callable(), unlock_mouse: bool = false) -> void:
 	if is_focused or target_point == null:

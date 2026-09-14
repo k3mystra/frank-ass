@@ -19,6 +19,8 @@ const CHARGE_KEYFRAME_TIMES: Array[float] = [0.0417, 0.0833, 0.1250, 0.1667, 0.2
 @onready var core_mesh: MeshInstance3D = find_child("Battery_001", true, false) as MeshInstance3D
 @onready var battery_collision: CollisionShape3D = find_child("BatteryCollision", true, false) as CollisionShape3D
 @onready var throw_hitbox: CollisionShape3D = find_child("ThrowHitBox", true, false) as CollisionShape3D
+@onready var audio_plug_in: AudioStreamPlayer3D = find_child("AudioPlugIn", true, false) as AudioStreamPlayer3D
+@onready var audio_plug_out: AudioStreamPlayer3D = find_child("AudioPlugOut", true, false) as AudioStreamPlayer3D
 
 var installed_battery: Resource = null
 var _last_blocks_lit: int = -1
@@ -107,6 +109,8 @@ func install_battery(battery: Resource) -> bool:
 
 	battery_attached.emit(installed_battery)
 	EventBus.battery_installed.emit(socket_id, installed_battery)
+	if audio_plug_in != null:
+		audio_plug_in.play(0.0)
 	return true
 
 func remove_battery() -> Resource:
@@ -121,6 +125,8 @@ func remove_battery() -> Resource:
 
 	battery_detached.emit(removed)
 	EventBus.battery_removed.emit(socket_id)
+	if audio_plug_out != null:
+		audio_plug_out.play(0.0)
 	return removed
 
 func _update_collision_state() -> void:

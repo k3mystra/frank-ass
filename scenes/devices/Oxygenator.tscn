@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b8socket001" path="res://scenes/props/battery_socket.tscn" id="2_47hmk"]
 [ext_resource type="PackedScene" uid="uid://btlgctyv7cqby" path="res://scenes/devices/Device.tscn" id="3_xb7l8"]
 [ext_resource type="Resource" uid="uid://can4it0jl1d3t" path="res://resources/frank/oxygen_saturation.tres" id="4_14qqh"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/Respiratory.mp3" id="5_respiratory"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxy"]
 size = Vector3(0.6484375, 0.7000122, 0.539978)
@@ -25,6 +26,12 @@ shape = SubResource("BoxShape3D_oxy")
 [node name="BatterySocket" parent="." unique_id=1839201948 instance=ExtResource("2_47hmk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5271863, 0, -0.09305042)
 
-[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket") instance=ExtResource("3_xb7l8")]
+[node name="Device" parent="." unique_id=365676413 node_paths=PackedStringArray("associated_socket", "audio_players") instance=ExtResource("3_xb7l8")]
 associated_metric = ExtResource("4_14qqh")
 associated_socket = NodePath("../BatterySocket")
+audio_players = [NodePath("../AudioRespiratory")]
+
+[node name="AudioRespiratory" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_respiratory")
+volume_db = -3.0
+max_distance = 18.0

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b5ik0w1aujqt0"]
 
 [ext_resource type="Script" path="res://scripts/interactables/power_lever.gd" id="1_lever"]
+[ext_resource type="AudioStream" path="res://assets/audio/MMUGameJamAudio/Electricbuzz.ogg" id="2_buzz"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01two"]
 resource_name = "body"
@@ -222,3 +223,8 @@ mesh = SubResource("ArrayMesh_x3fha")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1205157410]
 libraries/ = SubResource("AnimationLibrary_4ddih")
+
+[node name="AudioElectricBuzz" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_buzz")
+volume_db = 0.0
+max_distance = 15.0
